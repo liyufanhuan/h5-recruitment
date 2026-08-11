@@ -252,27 +252,95 @@
             color: #c9a84c; 
         }
 
-        /* Features - 深色网格 */
+        /* Features - 3D 作品展示墙 */
         .section-features { 
             background: linear-gradient(180deg, #0d1f3c 0%, #0a1628 100%); 
+            perspective: 1200px;
+            overflow: hidden;
         }
-        .features-grid {
-            display: grid; grid-template-columns: repeat(2,1fr); gap: 12px;
-            max-width: 560px; width: 100%; max-height: 55vh; overflow-y: auto;
+        .works-3d-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            height: 500px;
+            transform-style: preserve-3d;
         }
-        .feature-item {
-            background: rgba(255,255,255,0.03); 
-            border: 1px solid rgba(201, 168, 76, 0.1);
-            border-radius: 14px; 
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            text-align: center; padding: 20px 14px;
-            transition: border-color 0.3s ease;
+        .work-card-3d {
+            position: absolute;
+            width: 180px;
+            height: 120px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            transition: transform 0.5s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            backface-visibility: hidden;
         }
-        .feature-item:hover { border-color: rgba(201, 168, 76, 0.25); }
-        .feature-icon { font-size: 28px; margin-bottom: 10px; }
-        .feature-title { font-size: 14px; color: #c9a84c; margin-bottom: 5px; font-weight: bold; letter-spacing: 0.5px; }
-        .feature-desc { font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+        .work-card-3d:hover {
+            transform: translateZ(40px) scale(1.1) !important;
+            box-shadow: 0 15px 50px rgba(201, 168, 76, 0.3);
+            z-index: 100 !important;
+        }
+        .work-card-3d img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .work-card-3d .work-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 8px 10px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .work-card-3d:hover .work-overlay {
+            opacity: 1;
+        }
+        /* 左侧文字区域 */
+        .works-text-area {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            max-width: 200px;
+        }
+        .works-text-area h2 {
+            font-size: clamp(28px, 6vw, 40px);
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+        .works-text-area .highlight {
+            color: #c9a84c;
+            font-size: clamp(16px, 3.5vw, 22px);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .works-text-area .sub {
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+        @media (max-width: 480px) {
+            .works-3d-container { height: 350px; }
+            .work-card-3d { width: 130px; height: 85px; }
+            .works-text-area { 
+                position: static; 
+                transform: none; 
+                text-align: center; 
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+            .section-features { perspective: 800px; }
+        }
 
         /* CTA - 金色渐变 */
         .section-cta {
@@ -565,41 +633,15 @@
                 </div>
             </div>
         </div>
-        <!-- 第6屏：平面设计课程 -->
+        <!-- 第6屏：学生作品（3D展示墙） -->
         <div class="fp-section section-features">
-            <h2 class="section-title anim-item">平面设计课程</h2>
-            <p class="section-desc anim-item" style="transition-delay:.08s">Photoshop · Illustrator · UI设计</p>
-            <div class="features-grid">
-                <div class="feature-item anim-item from-scale" style="transition-delay:.12s">
-                    <div class="feature-icon">️</div>
-                    <div class="feature-title">海报设计</div>
-                    <div class="feature-desc">商业海报、活动海报、宣传物料设计</div>
-                </div>
-                <div class="feature-item anim-item from-scale" style="transition-delay:.2s">
-                    <div class="feature-icon">️</div>
-                    <div class="feature-title">品牌Logo</div>
-                    <div class="feature-desc">企业VI设计、品牌标识、视觉识别系统</div>
-                </div>
-                <div class="feature-item anim-item from-scale" style="transition-delay:.28s">
-                    <div class="feature-icon">🛒</div>
-                    <div class="feature-title">电商设计</div>
-                    <div class="feature-desc">Banner、店铺装修、产品详情页设计</div>
-                </div>
-                <div class="feature-item anim-item from-scale" style="transition-delay:.36s">
-                    <div class="feature-icon"></div>
-                    <div class="feature-title">UI设计</div>
-                    <div class="feature-desc">界面设计、交互原型、用户体验优化</div>
-                </div>
-                <div class="feature-item anim-item from-scale" style="transition-delay:.44s">
-                    <div class="feature-icon">📄</div>
-                    <div class="feature-title">折页/展架</div>
-                    <div class="feature-desc">宣传折页、易拉宝、展览展示物料</div>
-                </div>
-                <div class="feature-item anim-item from-scale" style="transition-delay:.52s">
-                    <div class="feature-icon">🎯</div>
-                    <div class="feature-title">综合实战</div>
-                    <div class="feature-desc">真实商业项目，从需求到交付完整流程</div>
-                </div>
+            <div class="works-text-area anim-item from-left" style="transition-delay:.1s">
+                <h2>ShuRui</h2>
+                <span class="highlight">WEB And APP</span>
+                <span class="sub">Interface Portfolio</span>
+            </div>
+            <div class="works-3d-container anim-item from-scale" style="transition-delay:.2s" id="works3dContainer">
+                <!-- JS 动态生成 3D 卡片 -->
             </div>
         </div>
         <!-- 第7屏：CTA + Footer -->
@@ -738,6 +780,61 @@
                     card.style.setProperty('--mouse-y', `${y}%`);
                 });
             });
+
+            // 3D 作品展示墙 - 动态生成卡片
+            const worksData = [
+                { title: '智慧城市大屏', color: '#1a3a6c' },
+                { title: '电商后台系统', color: '#2d6a4f' },
+                { title: '室内设计展示', color: '#5c4033' },
+                { title: '数据可视化', color: '#1e3c72' },
+                { title: 'TIU Solution', color: '#0d7377' },
+                { title: '博物馆展览', color: '#8b4513' },
+                { title: '城市规划', color: '#2c5f2d' },
+                { title: '品牌官网', color: '#4a1942' },
+                { title: '移动端APP', color: '#1b4965' },
+                { title: '三维产品展示', color: '#6b2737' }
+            ];
+
+            const container = document.getElementById('works3dContainer');
+            if (container) {
+                worksData.forEach((work, i) => {
+                    const card = document.createElement('div');
+                    card.className = 'work-card-3d';
+                    
+                    // 随机位置 + 旋转（模拟散落效果）
+                    const x = 100 + Math.random() * 400;
+                    const y = 30 + Math.random() * 350;
+                    const rotateZ = (Math.random() - 0.5) * 40;
+                    const rotateX = (Math.random() - 0.5) * 20;
+                    const z = -100 + Math.random() * 200;
+                    
+                    card.style.cssText = `
+                        left: ${x}px;
+                        top: ${y}px;
+                        transform: translateZ(${z}px) rotateZ(${rotateZ}deg) rotateX(${rotateX}deg);
+                        z-index: ${Math.round(z + 100)};
+                    `;
+                    
+                    // 用渐变色块代替真实图片（实际使用时替换为 <img src="...">）
+                    card.innerHTML = `
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,${work.color},${adjustColor(work.color, 40)});display:flex;align-items:center;justify-content:center;">
+                            <span style="color:rgba(255,255,255,0.3);font-size:24px;">🖼️</span>
+                        </div>
+                        <div class="work-overlay">${work.title}</div>
+                    `;
+                    
+                    container.appendChild(card);
+                });
+            }
+            
+            // 辅助函数：调整颜色亮度
+            function adjustColor(hex, percent) {
+                const num = parseInt(hex.replace('#',''), 16);
+                const r = Math.min(255, (num >> 16) + percent);
+                const g = Math.min(255, ((num >> 8) & 0x00FF) + percent);
+                const b = Math.min(255, (num & 0x0000FF) + percent);
+                return `#${(1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1)}`;
+            }
         });
     </script>
 </body>
