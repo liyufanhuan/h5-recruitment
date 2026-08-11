@@ -110,27 +110,97 @@
         .stat-number { font-size: clamp(18px,4.5vw,26px); font-weight: bold; display: block; }
         .stat-label { font-size: 10px; opacity: 0.9; margin-top: 2px; }
 
-        /* Team - 简洁卡片布局 */
-        .section-team { background: white; }
-        .team-grid {
-            display: grid; grid-template-columns: repeat(2,1fr); gap: 12px;
-            max-width: 560px; width: 100%;
+        /* ─ 团队轮盘样式 ───────────────────────────────────── */
+        .team-wheel-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            max-width: 600px;
+            height: 380px;
+            position: relative;
         }
-        .team-card {
-            background: white; border-radius: 12px; overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-align: center;
-            padding: 20px 15px;
+        .team-wheel-list {
+            position: relative;
+            width: 160px;
+            height: 100%;
+            overflow: hidden;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+            flex-shrink: 0;
         }
-        .team-avatar {
-            width: 60px; height: 60px; border-radius: 50%;
+        .team-wheel-list:active { cursor: grabbing; }
+        .team-wheel-name-item {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: center center;
+            text-align: center;
+            transition: opacity 0.3s ease, filter 0.3s ease;
+            will-change: transform, opacity, filter;
+            pointer-events: auto;
+            white-space: nowrap;
+        }
+        .team-wheel-name-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #0066CC;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(0, 102, 204, 0.08);
+        }
+        .team-wheel-detail {
+            flex: 1;
+            min-width: 0;
+            text-align: left;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: opacity 0.3s ease;
+        }
+        .team-detail-avatar {
+            width: 50px; height: 50px;
+            border-radius: 50%;
             background: linear-gradient(135deg,#0066CC,#00A8E8);
             display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 26px; margin: 0 auto 10px;
+            color: white; font-size: 22px;
+            margin-bottom: 12px;
             box-shadow: 0 4px 12px rgba(0,102,204,0.25);
         }
-        .team-name { font-size: 15px; font-weight: bold; color: #0066CC; margin-bottom: 3px; }
-        .team-role { font-size: 11px; color: #00A8E8; margin-bottom: 6px; }
-        .team-desc { font-size: 10px; color: #666; line-height: 1.4; }
+        .team-detail-name {
+            font-size: 20px; font-weight: bold; color: #0066CC;
+            margin-bottom: 4px;
+        }
+        .team-detail-role {
+            font-size: 13px; color: #00A8E8; margin-bottom: 12px;
+            font-weight: 500;
+        }
+        .team-detail-desc {
+            font-size: 13px; color: #555; line-height: 1.7;
+        }
+        .team-wheel-hint {
+            text-align: center; font-size: 12px; color: #999;
+            margin-top: 8px;
+        }
+        @media (max-width: 480px) {
+            .team-wheel-wrapper {
+                flex-direction: column;
+                height: auto;
+                gap: 15px;
+            }
+            .team-wheel-list {
+                width: 100%;
+                height: 120px;
+            }
+            .team-wheel-name-text { font-size: 15px; padding: 6px 14px; }
+            .team-wheel-detail { padding: 15px; }
+            .team-detail-name { font-size: 17px; }
+            .team-detail-role { font-size: 12px; }
+            .team-detail-desc { font-size: 12px; }
+        }
 
         /* Courses */
         .section-courses { background: #f0f7ff; }
@@ -251,36 +321,20 @@
                 <p>✓ 校企深度合作 推荐就业</p>
             </div>
         </div>
-        <!-- 第3屏：师资团队 -->
+        <!-- 第3屏：师资团队（轮盘） -->
         <div class="fp-section section-team">
             <h2 class="section-title anim-item">师资团队</h2>
             <p class="section-desc anim-item" style="transition-delay:.08s">行业精英领衔，实战经验丰富</p>
-            <div class="team-grid">
-                <div class="team-card anim-item from-scale" style="transition-delay:.15s">
-                    <div class="team-avatar">💼</div>
-                    <div class="team-name">张导师</div>
-                    <div class="team-role">技术总监 / 资深三维艺术家</div>
-                    <div class="team-desc">15年经验，参与多部院线电影特效，精通 Maya、Houdini、Nuke。</div>
-                </div>
-                <div class="team-card anim-item from-scale" style="transition-delay:.25s">
-                    <div class="team-avatar"></div>
-                    <div class="team-name">李导师</div>
-                    <div class="team-role">创意总监 / 视觉设计师</div>
-                    <div class="team-desc">10年品牌视觉设计经验，擅长概念设计与艺术指导。</div>
-                </div>
-                <div class="team-card anim-item from-scale" style="transition-delay:.35s">
-                    <div class="team-avatar">‍🏫</div>
-                    <div class="team-name">王导师</div>
-                    <div class="team-role">高级讲师 / 剪辑师</div>
-                    <div class="team-desc">8年影视剪辑经验，精通 Premiere、After Effects。</div>
-                </div>
-                <div class="team-card anim-item from-scale" style="transition-delay:.45s">
-                    <div class="team-avatar">‍🏫</div>
-                    <div class="team-name">赵导师</div>
-                    <div class="team-role">实训导师 / 动画师</div>
-                    <div class="team-desc">6年三维动画经验，专注角色动画与绑定技术。</div>
+            <div class="team-wheel-wrapper anim-item from-scale" id="teamWheel" style="transition-delay:.2s">
+                <div class="team-wheel-list" id="teamWheelList"></div>
+                <div class="team-wheel-detail" id="teamWheelDetail">
+                    <div class="team-detail-avatar" id="detailAvatar"></div>
+                    <div class="team-detail-name" id="detailName"></div>
+                    <div class="team-detail-role" id="detailRole"></div>
+                    <div class="team-detail-desc" id="detailDesc"></div>
                 </div>
             </div>
+            <p class="team-wheel-hint anim-item" style="transition-delay:.35s"> 上下滑动 / 滚轮切换导师</p>
         </div>
         <!-- 第4屏：课程设置 -->
         <div class="fp-section section-courses">
@@ -499,6 +553,173 @@
 
         // 页面加载时触发第一屏动画
         window.addEventListener('DOMContentLoaded', () => triggerAnim(0, 'down'));
+
+        /* ═══════════════════════════════════════════════════
+           团队介绍轮盘 - 原生 JS 实现（OptionWheel 移植版）
+           左侧：导师姓名列表（可滑动切换）
+           右侧：当前选中导师的详细介绍
+           ═══════════════════════════════════════════════════ */
+        (function() {
+            const TEAM_MEMBERS = [
+                { name: '张导师', role: '技术总监 / 资深三维艺术家', desc: '15年经验，参与多部院线电影特效制作，精通 Maya、Houdini、Nuke 等主流三维软件。', avatar: '💼' },
+                { name: '李导师', role: '创意总监 / 视觉设计师', desc: '10年品牌视觉设计经验，擅长概念设计与艺术指导，作品多次获得国内外设计大奖。', avatar: '' },
+                { name: '王导师', role: '高级讲师 / 剪辑师', desc: '8年影视剪辑经验，精通 Premiere、After Effects，擅长叙事节奏把控与视听语言运用。', avatar: '‍🏫' },
+                { name: '赵导师', role: '实训导师 / 动画师', desc: '6年三维动画制作经验，专注角色动画与绑定技术，教学风格生动有趣，深受学生喜爱。', avatar: '‍' }
+            ];
+
+            const listEl = document.getElementById('teamWheelList');
+            const detailEl = document.getElementById('teamWheelDetail');
+            const avatarEl = document.getElementById('detailAvatar');
+            const nameEl = document.getElementById('detailName');
+            const roleEl = document.getElementById('detailRole');
+            const descEl = document.getElementById('detailDesc');
+            if (!listEl || !detailEl) return;
+
+            // 配置参数
+            const CFG = {
+                rowH: 50,        // 每行高度(px)
+                tilt: 10,        // 倾斜角度(度)
+                curve: 1.5,      // 弧形弯曲系数
+                blur: 3,         // 模糊系数(px/单位距离)
+                fade: 0.4,       // 透明度衰减系数
+                minOpacity: 0.1, // 最小透明度
+                smoothing: 180   // 平滑时间(ms)
+            };
+
+            // 创建 DOM 元素
+            const itemEls = [];
+            TEAM_MEMBERS.forEach((m, i) => {
+                const el = document.createElement('div');
+                el.className = 'team-wheel-name-item';
+                el.innerHTML = `<span class="team-wheel-name-text">${m.name}</span>`;
+                listEl.appendChild(el);
+                itemEls.push(el);
+            });
+
+            // 状态变量
+            let pos = 0;
+            let target = 0;
+            let rafId = null;
+            let lastTime = 0;
+            let dragStart = null;
+            let dragMoved = false;
+            let selectedIndex = 0;
+
+            const n = TEAM_MEMBERS.length;
+            const tiltRad = (CFG.tilt * Math.PI) / 180;
+            const R = tiltRad > 0.0005 ? CFG.rowH / tiltRad : 0;
+
+            // 更新右侧详情面板
+            function updateDetail(index) {
+                const m = TEAM_MEMBERS[index];
+                avatarEl.textContent = m.avatar;
+                nameEl.textContent = m.name;
+                roleEl.textContent = m.role;
+                descEl.textContent = m.desc;
+                // 淡入动画
+                detailEl.style.opacity = '0';
+                requestAnimationFrame(() => {
+                    detailEl.style.transition = 'opacity 0.3s ease';
+                    detailEl.style.opacity = '1';
+                });
+            }
+
+            // rAF 渲染循环
+            function render(now) {
+                const dt = Math.min((now - lastTime) / 1000, 0.05);
+                lastTime = now;
+                const tau = Math.max(CFG.smoothing, 1) / 1000;
+                const k = 1 - Math.exp(-dt / tau);
+
+                pos += (target - pos) * k;
+                const settled = Math.abs(target - pos) < 0.001;
+
+                for (let i = 0; i < n; i++) {
+                    const el = itemEls[i];
+                    const d = i - pos;
+                    const dist = Math.abs(d);
+
+                    let x = 0, y = d * CFG.rowH, rot = 0;
+                    if (R > 0) {
+                        const ang = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, d * tiltRad));
+                        y = R * Math.sin(ang);
+                        x = -R * (1 - Math.cos(ang)) * CFG.curve;
+                        rot = (ang * 180) / Math.PI;
+                    }
+
+                    el.style.transform = `translate(${x.toFixed(1)}px, calc(${y.toFixed(1)}px - 50%)) rotate(${rot.toFixed(2)}deg)`;
+                    el.style.opacity = String(Math.max(CFG.minOpacity, 1 - dist * CFG.fade));
+                    el.style.filter = CFG.blur > 0 ? `blur(${(dist * CFG.blur).toFixed(1)}px)` : 'none';
+                    el.style.zIndex = String(Math.round((1 - dist) * 100));
+                    el.style.pointerEvents = dist < 0.5 ? 'auto' : 'none';
+                }
+
+                // 更新选中的索引
+                const newIdx = Math.round(Math.max(0, Math.min(n - 1, pos)));
+                if (newIdx !== selectedIndex) {
+                    selectedIndex = newIdx;
+                    updateDetail(selectedIndex);
+                }
+
+                rafId = settled ? null : requestAnimationFrame(render);
+            }
+
+            function startLoop() {
+                if (rafId) cancelAnimationFrame(rafId);
+                lastTime = performance.now();
+                rafId = requestAnimationFrame(render);
+            }
+
+            function snapTo(val) {
+                target = Math.round(Math.max(0, Math.min(n - 1, val)));
+                startLoop();
+            }
+
+            // 滚轮事件
+            listEl.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const delta = e.deltaMode === 1 ? e.deltaY * 24 : e.deltaY;
+                const step = Math.max(-1, Math.min(1, delta / CFG.rowH));
+                target = Math.max(0, Math.min(n - 1, target + step));
+                startLoop();
+            }, { passive: false });
+
+            // 触摸拖拽
+            listEl.addEventListener('touchstart', (e) => {
+                dragStart = { y: e.touches[0].clientY, t: target };
+                dragMoved = false;
+            }, { passive: true });
+
+            listEl.addEventListener('touchmove', (e) => {
+                if (!dragStart) return;
+                const dy = e.touches[0].clientY - dragStart.y;
+                if (!dragMoved && Math.abs(dy) > 5) dragMoved = true;
+                if (dragMoved) {
+                    e.preventDefault();
+                    target = Math.max(0, Math.min(n - 1, dragStart.t - dy / CFG.rowH));
+                    startLoop();
+                }
+            }, { passive: false });
+
+            listEl.addEventListener('touchend', () => {
+                if (dragMoved) snapTo(target);
+                dragStart = null;
+                dragMoved = false;
+            });
+
+            // 点击选中
+            itemEls.forEach((el, i) => {
+                el.addEventListener('click', () => {
+                    if (dragMoved) return;
+                    snapTo(i);
+                });
+            });
+
+            // 初始化
+            updateDetail(0);
+            startLoop();
+        })();
     </script>
 </body>
 </html>
