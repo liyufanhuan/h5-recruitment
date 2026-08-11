@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>影视后期专业 - 校企合作招生</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: #fff;
+            min-height: 100vh;
+        }
+
+        /* 头部横幅 */
+        .hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 20px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: move 20s linear infinite;
+        }
+
+        @keyframes move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 16px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 区块通用样式 */
+        .section {
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        /* 公司介绍 */
+        .company-intro {
+            background: #f8f9fa;
+        }
+
+        .company-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .company-card h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .company-card p {
+            color: #555;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* 团队介绍 */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-avatar {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+
+        .member-info {
+            padding: 15px;
+        }
+
+        .member-name {
+            font-size: 18px;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+
+        .member-role {
+            font-size: 13px;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .member-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* 教学案例 */
+        .case-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .case-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .case-video {
+            width: 100%;
+            height: 200px;
+            background: #000;
+            position: relative;
+        }
+
+        .case-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+
+        .case-info {
+            padding: 20px;
+        }
+
+        .case-title {
+            font-size: 18px;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        .case-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .case-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* 学生作品 */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .work-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .work-thumb {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+        }
+
+        .work-info {
+            padding: 12px;
+        }
+
+        .work-title {
+            font-size: 15px;
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+
+        .work-author {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* CTA 区域 */
+        .cta {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .cta h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #1e3c72;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* 底部 */
+        .footer {
+            background: #1a1a1a;
+            color: #999;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 13px;
+        }
+
+        .footer p {
+            margin-bottom: 5px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid,
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部横幅 -->
+        <div class="hero">
+            <h1>🎬 影视后期专业</h1>
+            <p>校企合作 · 产教融合 · 实战驱动</p>
+            <div class="badge">三维动画 | 特效制作 | 影视剪辑</div>
+        </div>
+
+        <!-- 公司介绍 -->
+        <div class="section company-intro">
+            <h2 class="section-title">关于我们</h2>
+            <p class="section-desc">深耕影视行业，赋能人才培养</p>
+            
+            <div class="company-card">
+                <h3>XX数字创意科技有限公司</h3>
+                <p>我们是一家专注于数字内容创作与影视后期制作的创新型企业，致力于将前沿技术与艺术创作相结合，为客户提供高质量的视觉解决方案。</p>
+                <p>公司与多所高校建立深度合作关系，通过"校企协同、工学结合"的人才培养模式，为行业输送具备实战能力的专业人才。</p>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">年行业经验</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">成功案例</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">培养学员</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="company-card">
+                <h3>核心业务</h3>
+                <p>✓ 三维动画制作（角色动画、场景建模、特效渲染）</p>
+                <p>✓ 影视后期合成（调色、抠像、特效合成）</p>
+                <p>✓ 商业视频制作（宣传片、广告片、短视频）</p>
+                <p>✓ VR/AR 内容开发</p>
+            </div>
+        </div>
+
+        <!-- 团队介绍 -->
+        <div class="section">
+            <h2 class="section-title">师资团队</h2>
+            <p class="section-desc">行业精英领衔，实战经验丰富</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">👨‍💼</div>
+                    <div class="member-info">
+                        <div class="member-name">张导师</div>
+                        <div class="member-role">技术总监 / 资深三维艺术家</div>
+                        <div class="member-desc">15年影视后期经验，参与多部院线电影特效制作，精通 Maya、Houdini、Nuke 等主流软件。</div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">👩‍💼</div>
+                    <div class="member-info">
+                        <div class="member-name">李导师</div>
+                        <div class="member-role">创意总监 / 视觉设计师</div>
+                        <div class="member-desc">10年品牌视觉设计经验，擅长概念设计与艺术指导，作品多次获得国内外设计大奖。</div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">👨‍🏫</div>
+                    <div class="member-info">
+                        <div class="member-name">王导师</div>
+                        <div class="member-role">高级讲师 / 剪辑师</div>
+                        <div class="member-desc">8年影视剪辑经验，精通 Premiere、After Effects，擅长叙事节奏把控与视听语言运用。</div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">👩‍🏫</div>
+                    <div class="member-info">
+                        <div class="member-name">赵导师</div>
+                        <div class="member-role">实训导师 / 动画师</div>
+                        <div class="member-desc">6年三维动画制作经验，专注角色动画与绑定技术，教学风格生动有趣，深受学生喜爱。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 教学案例 -->
+        <div class="section" style="background: #f8f9fa;">
+            <h2 class="section-title">教学案例</h2>
+            <p class="section-desc">真实项目驱动，学以致用</p>
+            
+            <div class="case-list">
+                <div class="case-item">
+                    <div class="case-video">
+                        <div class="video-placeholder">▶️</div>
+                    </div>
+                    <div class="case-info">
+                        <div class="case-title">《城市守护者》三维动画短片</div>
+                        <div class="case-desc">学生团队在导师指导下完成的原创三维动画作品，从剧本创作、角色设计到最终渲染全流程实战。</div>
+                        <div class="case-tags">
+                            <span class="tag">Maya</span>
+                            <span class="tag">ZBrush</span>
+                            <span class="tag">Arnold</span>
+                            <span class="tag">团队协作</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-item">
+                    <div class="case-video">
+                        <div class="video-placeholder">▶️</div>
+                    </div>
+                    <div class="case-info">
+                        <div class="case-title">某品牌产品宣传片</div>
+                        <div class="case-desc">承接企业真实项目，学生参与前期策划、中期拍摄协助及后期特效合成，体验完整工作流程。</div>
+                        <div class="case-tags">
+                            <span class="tag">After Effects</span>
+                            <span class="tag">Premiere</span>
+                            <span class="tag">Cinema 4D</span>
+                            <span class="tag">客户沟通</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-item">
+                    <div class="case-video">
+                        <div class="video-placeholder">▶️</div>
+                    </div>
+                    <div class="case-info">
+                        <div class="case-title">VR 虚拟展厅项目</div>
+                        <div class="case-desc">结合虚拟现实技术，打造沉浸式展览空间，探索新媒体艺术表现形式。</div>
+                        <div class="case-tags">
+                            <span class="tag">Unity</span>
+                            <span class="tag">Blender</span>
+                            <span class="tag">VR开发</span>
+                            <span class="tag">交互设计</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 学生作品 -->
+        <div class="section">
+            <h2 class="section-title">学生作品</h2>
+            <p class="section-desc">优秀学员成果展示</p>
+            
+            <div class="works-grid">
+                <div class="work-item">
+                    <div class="work-thumb">🎨</div>
+                    <div class="work-info">
+                        <div class="work-title">科幻场景概念设计</div>
+                        <div class="work-author">学员：陈同学</div>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-thumb">🎬</div>
+                    <div class="work-info">
+                        <div class="work-title">角色动画演示</div>
+                        <div class="work-author">学员：刘同学</div>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-thumb">✨</div>
+                    <div class="work-info">
+                        <div class="work-title">特效合成作品</div>
+                        <div class="work-author">学员：王同学</div>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-thumb">🎭</div>
+                    <div class="work-info">
+                        <div class="work-title">三维角色建模</div>
+                        <div class="work-author">学员：张同学</div>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-thumb">🌆</div>
+                    <div class="work-info">
+                        <div class="work-title">城市建筑可视化</div>
+                        <div class="work-author">学员：李同学</div>
+                    </div>
+                </div>
+
+                <div class="work-item">
+                    <div class="work-thumb">🎪</div>
+                    <div class="work-info">
+                        <div class="work-title">动态图形设计</div>
+                        <div class="work-author">学员：赵同学</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta">
+            <h2>加入我们，开启创意之旅</h2>
+            <p>与行业精英同行，用技术实现梦想</p>
+            <a href="#" class="cta-button">立即咨询报名</a>
+        </div>
+
+        <!-- 底部 -->
+        <div class="footer">
+            <p>XX数字创意科技有限公司</p>
+            <p>联系电话：400-XXX-XXXX | 邮箱：contact@example.com</p>
+            <p>地址：XX市XX区XX路XX号</p>
+            <p style="margin-top: 15px; opacity: 0.6;">© 2026 All Rights Reserved</p>
+        </div>
+    </div>
+
+    <script>
+        // 简单的滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
