@@ -10,25 +10,37 @@
             height: 100%; overflow: hidden;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
             color: #333; line-height: 1.6;
+            /* 禁止移动端默认滚动行为 */
+            touch-action: none;
+            -webkit-overflow-scrolling: auto;
         }
         .fullpage-wrapper {
-            height: 100%; transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            height: 100%; transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
+            will-change: transform;
         }
         .fp-section {
             height: 100vh; width: 100%; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; padding: 40px 20px;
+            justify-content: center; align-items: center; padding: 30px 20px;
             position: relative; overflow-y: auto; -webkit-overflow-scrolling: touch;
         }
         .fp-nav {
-            position: fixed; right: 20px; top: 50%; transform: translateY(-50%);
-            z-index: 100; display: flex; flex-direction: column; gap: 12px;
+            position: fixed; right: 15px; top: 50%; transform: translateY(-50%);
+            z-index: 100; display: flex; flex-direction: column; gap: 14px;
         }
         .fp-nav-dot {
-            width: 12px; height: 12px; border-radius: 50%;
-            background: rgba(255,255,255,0.5); border: 2px solid rgba(255,255,255,0.8);
+            width: 10px; height: 10px; border-radius: 50%;
+            background: rgba(255,255,255,0.4); border: 2px solid rgba(255,255,255,0.7);
             cursor: pointer; transition: all 0.3s;
+            /* 增大触摸区域 */
+            min-width: 28px; min-height: 28px;
+            display: flex; align-items: center; justify-content: center;
         }
-        .fp-nav-dot.active { background: #fff; transform: scale(1.3); }
+        .fp-nav-dot::after {
+            content: '';
+            width: 10px; height: 10px; border-radius: 50%;
+            background: inherit; border: inherit;
+        }
+        .fp-nav-dot.active { background: #fff; transform: scale(1.4); }
 
         /* Hero */
         .section-hero {
@@ -36,7 +48,6 @@
             color: white; text-align: center;
             overflow: hidden;
         }
-        /* 背景图片层 - 替换这里的 url() 即可换背景图 */
         .section-hero::before {
             content: '';
             position: absolute;
@@ -44,7 +55,6 @@
             background: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&q=80') center/cover no-repeat;
             z-index: 0;
         }
-        /* 磨砂玻璃遮罩层 */
         .section-hero::after {
             content: '';
             position: absolute;
@@ -62,128 +72,139 @@
             z-index: 2;
         }
         @keyframes move { 0%{transform:translate(0,0)} 100%{transform:translate(50px,50px)} }
-        .section-hero h1 { font-size: clamp(28px,6vw,42px); margin-bottom: 15px; }
-        .section-hero .subtitle { font-size: clamp(14px,3vw,18px); opacity: 0.95; margin-bottom: 20px; }
+        .section-hero h1 { font-size: clamp(26px,7vw,40px); margin-bottom: 12px; }
+        .section-hero .subtitle { font-size: clamp(13px,3.5vw,17px); opacity: 0.95; margin-bottom: 18px; }
         .badge {
-            display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px;
-            border-radius: 20px; font-size: 14px;
+            display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 18px;
+            border-radius: 20px; font-size: 13px;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.3);
         }
         .scroll-hint {
-            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-            animation: bounce 2s infinite; opacity: 0.7; font-size: 24px;
+            position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%);
+            animation: bounce 2s infinite; opacity: 0.7; font-size: 22px;
         }
         @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-10px)} }
 
         /* Common */
         .section-title {
-            font-size: clamp(22px,5vw,30px); color: #0066CC; margin-bottom: 10px; text-align: center;
+            font-size: clamp(20px,5.5vw,28px); color: #0066CC; margin-bottom: 8px; text-align: center;
         }
         .section-title::after {
-            content: ''; display: block; width: 60px; height: 3px;
-            background: linear-gradient(90deg,#0066CC,#00A8E8); margin: 10px auto 0; border-radius: 2px;
+            content: ''; display: block; width: 50px; height: 3px;
+            background: linear-gradient(90deg,#0066CC,#00A8E8); margin: 8px auto 0; border-radius: 2px;
         }
-        .section-desc { text-align: center; color: #666; margin-bottom: 25px; font-size: 15px; }
+        .section-desc { text-align: center; color: #666; margin-bottom: 20px; font-size: 14px; }
 
         /* Company */
         .section-company { background: #f0f7ff; }
         .company-card {
-            background: white; border-radius: 12px; padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 15px; max-width: 600px; width: 100%;
+            background: white; border-radius: 12px; padding: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 12px; max-width: 560px; width: 100%;
         }
-        .company-card h3 { color: #0066CC; margin-bottom: 10px; font-size: 18px; }
-        .company-card p { color: #555; margin-bottom: 8px; font-size: 14px; }
-        .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 15px; }
+        .company-card h3 { color: #0066CC; margin-bottom: 8px; font-size: 17px; }
+        .company-card p { color: #555; margin-bottom: 6px; font-size: 13px; }
+        .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 12px; }
         .stat-item {
-            text-align: center; padding: 12px 8px;
+            text-align: center; padding: 10px 6px;
             background: linear-gradient(135deg,#0066CC,#00A8E8); border-radius: 10px; color: white;
         }
-        .stat-number { font-size: clamp(20px,4vw,28px); font-weight: bold; display: block; }
-        .stat-label { font-size: 11px; opacity: 0.9; margin-top: 3px; }
+        .stat-number { font-size: clamp(18px,4.5vw,26px); font-weight: bold; display: block; }
+        .stat-label { font-size: 10px; opacity: 0.9; margin-top: 2px; }
 
         /* Courses */
         .section-courses { background: white; }
-        .course-grid { display: grid; grid-template-columns: repeat(1,1fr); gap: 15px; max-width: 600px; width: 100%; }
+        .course-grid { display: grid; grid-template-columns: repeat(1,1fr); gap: 12px; max-width: 560px; width: 100%; }
         .course-card {
-            background: #0066CC; color: white; border-radius: 12px; padding: 20px;
+            background: #0066CC; color: white; border-radius: 12px; padding: 18px;
             box-shadow: 0 4px 15px rgba(0,102,204,0.2);
         }
-        .course-card h3 { font-size: 20px; margin-bottom: 10px; text-align: center; }
-        .course-card p { font-size: 13px; opacity: 0.95; line-height: 1.6; }
-        .course-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; justify-content: center; }
+        .course-card h3 { font-size: 18px; margin-bottom: 8px; text-align: center; }
+        .course-card p { font-size: 12px; opacity: 0.95; line-height: 1.5; }
+        .course-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; justify-content: center; }
         .course-tag {
-            background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 12px;
+            background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 10px; font-size: 11px;
         }
 
         /* Training */
         .section-training { background: #f0f7ff; }
         .training-list {
-            display: flex; flex-direction: column; gap: 15px; max-width: 600px; width: 100%;
-            max-height: 60vh; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 12px; max-width: 560px; width: 100%;
+            max-height: 55vh; overflow-y: auto;
         }
         .training-item {
             background: white; border-radius: 12px; overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08); display: flex; flex-shrink: 0;
         }
         .training-icon {
-            width: 120px; min-height: 100px; background: linear-gradient(135deg,#0066CC,#00A8E8);
-            display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; flex-shrink: 0;
+            width: 100px; min-height: 90px; background: linear-gradient(135deg,#0066CC,#00A8E8);
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; flex-shrink: 0;
         }
-        .training-info { padding: 15px; flex: 1; }
-        .training-title { font-size: 15px; color: #0066CC; margin-bottom: 6px; font-weight: bold; }
-        .training-desc { font-size: 12px; color: #666; margin-bottom: 8px; }
-        .training-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-        .tag { background: #e8f4ff; padding: 3px 10px; border-radius: 10px; font-size: 11px; color: #0066CC; }
+        .training-info { padding: 12px; flex: 1; }
+        .training-title { font-size: 14px; color: #0066CC; margin-bottom: 5px; font-weight: bold; }
+        .training-desc { font-size: 11px; color: #666; margin-bottom: 6px; }
+        .training-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+        .tag { background: #e8f4ff; padding: 2px 8px; border-radius: 8px; font-size: 10px; color: #0066CC; }
 
         /* Features */
         .section-features { background: white; }
         .features-grid {
-            display: grid; grid-template-columns: repeat(2,1fr); gap: 12px;
-            max-width: 600px; width: 100%; max-height: 60vh; overflow-y: auto;
+            display: grid; grid-template-columns: repeat(2,1fr); gap: 10px;
+            max-width: 560px; width: 100%; max-height: 55vh; overflow-y: auto;
         }
         .feature-item {
             background: white; border-radius: 12px; overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-align: center; padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-align: center; padding: 16px;
         }
-        .feature-icon { font-size: 36px; margin-bottom: 10px; }
-        .feature-title { font-size: 15px; color: #0066CC; margin-bottom: 5px; font-weight: bold; }
-        .feature-desc { font-size: 12px; color: #666; }
+        .feature-icon { font-size: 30px; margin-bottom: 8px; }
+        .feature-title { font-size: 14px; color: #0066CC; margin-bottom: 4px; font-weight: bold; }
+        .feature-desc { font-size: 11px; color: #666; }
 
         /* CTA */
         .section-cta {
             background: linear-gradient(135deg,#0066CC,#00A8E8); color: white; text-align: center;
         }
-        .section-cta h2 { font-size: clamp(24px,5vw,32px); margin-bottom: 12px; }
-        .section-cta p { font-size: 16px; opacity: 0.9; margin-bottom: 25px; }
+        .section-cta h2 { font-size: clamp(22px,5.5vw,30px); margin-bottom: 10px; }
+        .section-cta p { font-size: 15px; opacity: 0.9; margin-bottom: 20px; }
         .cta-button {
-            display: inline-block; background: white; color: #0066CC; padding: 14px 36px;
-            border-radius: 30px; font-size: 17px; font-weight: bold; text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin-bottom: 30px;
+            display: inline-block; background: white; color: #0066CC; padding: 12px 32px;
+            border-radius: 30px; font-size: 16px; font-weight: bold; text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin-bottom: 25px;
         }
-        .footer-info { font-size: 12px; opacity: 0.7; line-height: 1.8; }
-        .footer-badges { display: flex; gap: 20px; justify-content: center; margin-top: 15px; }
-        .footer-badge { display: flex; align-items: center; gap: 5px; font-size: 13px; }
+        .footer-info { font-size: 11px; opacity: 0.7; line-height: 1.7; }
+        .footer-badges { display: flex; gap: 15px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
+        .footer-badge { display: flex; align-items: center; gap: 4px; font-size: 12px; }
 
         @media (max-width: 480px) {
             .features-grid { grid-template-columns: 1fr; }
             .stats { grid-template-columns: 1fr; }
             .training-item { flex-direction: column; }
-            .training-icon { width: 100%; height: 100px; }
-            .fp-nav { right: 10px; }
-            .fp-nav-dot { width: 10px; height: 10px; }
+            .training-icon { width: 100%; height: 80px; }
+            .fp-nav { right: 8px; gap: 10px; }
+            .fp-nav-dot { min-width: 24px; min-height: 24px; }
+            .fp-nav-dot::after { width: 8px; height: 8px; }
+            .section-hero h1 { font-size: 26px; }
+            .section-title { font-size: 22px; }
+            .company-card, .course-card { padding: 15px; }
         }
 
-        /* ─ 层级动画 ─────────────────────────────────────── */
+        /* ─ 层级动画（支持双向）─────────────────────────────── */
         .anim-item {
             opacity: 0;
             transform: translateY(40px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        .anim-item.from-left  { transform: translateX(-60px); }
-        .anim-item.from-right { transform: translateX(60px); }
-        .anim-item.from-scale { transform: scale(0.8); }
+        .anim-item.from-left  { transform: translateX(-50px); }
+        .anim-item.from-right { transform: translateX(50px); }
+        .anim-item.from-scale { transform: scale(0.85); }
+        /* 向上滑动时的反向动画 */
+        .anim-item.reverse {
+            transform: translateY(-40px);
+        }
+        .anim-item.reverse.from-left  { transform: translateX(-50px) translateY(-20px); }
+        .anim-item.reverse.from-right { transform: translateX(50px) translateY(-20px); }
+        .anim-item.reverse.from-scale { transform: scale(0.85) translateY(-20px); }
         .anim-item.visible {
             opacity: 1;
             transform: translateY(0) translateX(0) scale(1);
@@ -195,26 +216,26 @@
     <div class="fullpage-wrapper" id="fullpageWrapper">
         <!-- 第1屏：Hero -->
         <div class="fp-section section-hero">
-            <h1 class="anim-item from-scale">🎓 济南信息工程学校</h1>
-            <p class="subtitle anim-item" style="transition-delay:.15s">数字工厂实战教学 · 产教融合 · 互利共赢</p>
-            <div class="badge anim-item" style="transition-delay:.3s">影视后期 | 平面设计 | 三维动画</div>
-            <div class="scroll-hint anim-item" style="transition-delay:.5s"></div>
+            <h1 class="anim-item from-scale"> 济南信息工程学校</h1>
+            <p class="subtitle anim-item" style="transition-delay:.12s">数字工厂实战教学 · 产教融合 · 互利共赢</p>
+            <div class="badge anim-item" style="transition-delay:.24s">影视后期 | 平面设计 | 三维动画</div>
+            <div class="scroll-hint anim-item" style="transition-delay:.4s"></div>
         </div>
         <!-- 第2屏：学校介绍 -->
         <div class="fp-section section-company">
             <h2 class="section-title anim-item">关于我们</h2>
-            <p class="section-desc anim-item" style="transition-delay:.1s">以促进就业为导向，以能力提升为核心</p>
-            <div class="company-card anim-item from-left" style="transition-delay:.2s">
+            <p class="section-desc anim-item" style="transition-delay:.08s">以促进就业为导向，以能力提升为核心</p>
+            <div class="company-card anim-item from-left" style="transition-delay:.18s">
                 <h3>数字工厂实战教学基地</h3>
                 <p>全面提升学员技术水平与综合能力，通过真实项目驱动教学，让学员在校期间即具备行业实战能力。</p>
                 <p>国家职业技能鉴定 · 高技能人才培训 · 产教融合 互利共赢</p>
                 <div class="stats">
-                    <div class="stat-item anim-item from-scale" style="transition-delay:.35s"><span class="stat-number">3+</span><span class="stat-label">专业方向</span></div>
-                    <div class="stat-item anim-item from-scale" style="transition-delay:.45s"><span class="stat-number">100%</span><span class="stat-label">实战教学</span></div>
-                    <div class="stat-item anim-item from-scale" style="transition-delay:.55s"><span class="stat-number">∞</span><span class="stat-label">就业机会</span></div>
+                    <div class="stat-item anim-item from-scale" style="transition-delay:.3s"><span class="stat-number">3+</span><span class="stat-label">专业方向</span></div>
+                    <div class="stat-item anim-item from-scale" style="transition-delay:.38s"><span class="stat-number">100%</span><span class="stat-label">实战教学</span></div>
+                    <div class="stat-item anim-item from-scale" style="transition-delay:.46s"><span class="stat-number">∞</span><span class="stat-label">就业机会</span></div>
                 </div>
             </div>
-            <div class="company-card anim-item from-right" style="transition-delay:.35s">
+            <div class="company-card anim-item from-right" style="transition-delay:.3s">
                 <h3>核心优势</h3>
                 <p>✓ 国家职业技能鉴定认证</p>
                 <p>✓ 高技能人才培训基地</p>
@@ -225,9 +246,9 @@
         <!-- 第3屏：课程设置 -->
         <div class="fp-section section-courses">
             <h2 class="section-title anim-item">课程设置</h2>
-            <p class="section-desc anim-item" style="transition-delay:.1s">三大专业方向，全面覆盖数字创意领域</p>
+            <p class="section-desc anim-item" style="transition-delay:.08s">三大专业方向，全面覆盖数字创意领域</p>
             <div class="course-grid">
-                <div class="course-card anim-item from-left" style="transition-delay:.2s">
+                <div class="course-card anim-item from-left" style="transition-delay:.18s">
                     <h3>🎬 影视后期</h3>
                     <p>栏目包装、特效合成、MG动画、短视频制作</p>
                     <div class="course-tags">
@@ -236,8 +257,8 @@
                         <span class="course-tag">剪辑</span>
                     </div>
                 </div>
-                <div class="course-card anim-item from-right" style="transition-delay:.35s">
-                    <h3>🎨 平面设计</h3>
+                <div class="course-card anim-item from-right" style="transition-delay:.3s">
+                    <h3> 平面设计</h3>
                     <p>海报、易拉宝、品牌Logo设计制作、电商设计</p>
                     <div class="course-tags">
                         <span class="course-tag">Photoshop</span>
@@ -245,7 +266,7 @@
                         <span class="course-tag">UI设计</span>
                     </div>
                 </div>
-                <div class="course-card anim-item from-left" style="transition-delay:.5s">
+                <div class="course-card anim-item from-left" style="transition-delay:.42s">
                     <h3>🧊 三维动画</h3>
                     <p>场景搭建、骨骼绑定、三维动画、AI数字人、UE5虚幻</p>
                     <div class="course-tags">
@@ -259,9 +280,9 @@
         <!-- 第4屏：课程介绍-影视后期 -->
         <div class="fp-section section-training">
             <h2 class="section-title anim-item">课程介绍</h2>
-            <p class="section-desc anim-item" style="transition-delay:.1s">TRAINING BASE · 影视后期</p>
+            <p class="section-desc anim-item" style="transition-delay:.08s">TRAINING BASE · 影视后期</p>
             <div class="training-list">
-                <div class="training-item anim-item from-left" style="transition-delay:.2s">
+                <div class="training-item anim-item from-left" style="transition-delay:.18s">
                     <div class="training-icon">🎥</div>
                     <div class="training-info">
                         <div class="training-title">主流软件操作</div>
@@ -269,7 +290,7 @@
                         <div class="training-tags"><span class="tag">PR</span><span class="tag">AE</span><span class="tag">剪映</span></div>
                     </div>
                 </div>
-                <div class="training-item anim-item from-right" style="transition-delay:.35s">
+                <div class="training-item anim-item from-right" style="transition-delay:.3s">
                     <div class="training-icon"></div>
                     <div class="training-info">
                         <div class="training-title">前期文案策划</div>
@@ -277,7 +298,7 @@
                         <div class="training-tags"><span class="tag">文案策划</span><span class="tag">机位设置</span><span class="tag">运镜</span></div>
                     </div>
                 </div>
-                <div class="training-item anim-item from-left" style="transition-delay:.5s">
+                <div class="training-item anim-item from-left" style="transition-delay:.42s">
                     <div class="training-icon">🏭</div>
                     <div class="training-info">
                         <div class="training-title">行业运作全流程</div>
@@ -290,34 +311,34 @@
         <!-- 第5屏：课程介绍-平面设计 -->
         <div class="fp-section section-features">
             <h2 class="section-title anim-item">平面设计课程</h2>
-            <p class="section-desc anim-item" style="transition-delay:.1s">Photoshop · Illustrator · UI设计</p>
+            <p class="section-desc anim-item" style="transition-delay:.08s">Photoshop · Illustrator · UI设计</p>
             <div class="features-grid">
-                <div class="feature-item anim-item from-scale" style="transition-delay:.15s">
+                <div class="feature-item anim-item from-scale" style="transition-delay:.12s">
                     <div class="feature-icon">🖼️</div>
                     <div class="feature-title">海报设计</div>
                     <div class="feature-desc">商业海报、活动海报、宣传物料设计</div>
                 </div>
-                <div class="feature-item anim-item from-scale" style="transition-delay:.25s">
-                    <div class="feature-icon">🏷️</div>
+                <div class="feature-item anim-item from-scale" style="transition-delay:.2s">
+                    <div class="feature-icon">️</div>
                     <div class="feature-title">品牌Logo</div>
                     <div class="feature-desc">企业VI设计、品牌标识、视觉识别系统</div>
                 </div>
-                <div class="feature-item anim-item from-scale" style="transition-delay:.35s">
+                <div class="feature-item anim-item from-scale" style="transition-delay:.28s">
                     <div class="feature-icon">🛒</div>
                     <div class="feature-title">电商设计</div>
                     <div class="feature-desc">Banner、店铺装修、产品详情页设计</div>
                 </div>
-                <div class="feature-item anim-item from-scale" style="transition-delay:.45s">
-                    <div class="feature-icon">📱</div>
+                <div class="feature-item anim-item from-scale" style="transition-delay:.36s">
+                    <div class="feature-icon"></div>
                     <div class="feature-title">UI设计</div>
                     <div class="feature-desc">界面设计、交互原型、用户体验优化</div>
                 </div>
-                <div class="feature-item anim-item from-scale" style="transition-delay:.55s">
+                <div class="feature-item anim-item from-scale" style="transition-delay:.44s">
                     <div class="feature-icon">📄</div>
                     <div class="feature-title">折页/展架</div>
                     <div class="feature-desc">宣传折页、易拉宝、展览展示物料</div>
                 </div>
-                <div class="feature-item anim-item from-scale" style="transition-delay:.65s">
+                <div class="feature-item anim-item from-scale" style="transition-delay:.52s">
                     <div class="feature-icon"></div>
                     <div class="feature-title">综合实战</div>
                     <div class="feature-desc">真实商业项目，从需求到交付完整流程</div>
@@ -327,16 +348,16 @@
         <!-- 第6屏：CTA + Footer -->
         <div class="fp-section section-cta">
             <h2 class="anim-item from-scale">加入我们，成就数字创意人才</h2>
-            <p class="anim-item" style="transition-delay:.15s">国家职业技能鉴定 · 高技能人才培训</p>
-            <a href="#" class="cta-button anim-item from-scale" style="transition-delay:.3s">立即咨询报名</a>
-            <div class="footer-info anim-item" style="transition-delay:.45s">
+            <p class="anim-item" style="transition-delay:.12s">国家职业技能鉴定 · 高技能人才培训</p>
+            <a href="#" class="cta-button anim-item from-scale" style="transition-delay:.24s">立即咨询报名</a>
+            <div class="footer-info anim-item" style="transition-delay:.36s">
                 <p>济南信息工程学校 · 数字工厂实战教学基地</p>
                 <p>联系电话：请咨询招生办 | 地址：济南市</p>
                 <div class="footer-badges">
                     <div class="footer-badge">◆ 国家职业技能鉴定</div>
                     <div class="footer-badge">◆ 高技能人才培训</div>
                 </div>
-                <p style="margin-top:15px;">© 2026 济南信息工程学校 All Rights Reserved</p>
+                <p style="margin-top:12px;">© 2026 济南信息工程学校 All Rights Reserved</p>
             </div>
         </div>
     </div>
@@ -344,9 +365,10 @@
         const wrapper = document.getElementById('fullpageWrapper');
         const sections = document.querySelectorAll('.fp-section');
         const navContainer = document.getElementById('fpNav');
-        let currentSection = 0, isScrolling = false;
+        let currentSection = 0, isScrolling = false, lastDirection = 'down';
         const totalSections = sections.length;
 
+        // 创建导航点
         sections.forEach((_, index) => {
             const dot = document.createElement('div');
             dot.className = 'fp-nav-dot' + (index === 0 ? ' active' : '');
@@ -358,40 +380,72 @@
         function goToSection(index) {
             if (index < 0 || index >= totalSections || isScrolling) return;
             isScrolling = true;
+            lastDirection = index > currentSection ? 'down' : 'up';
             currentSection = index;
             wrapper.style.transform = `translateY(-${currentSection * 100}vh)`;
             dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSection));
-            triggerAnim(currentSection);
-            setTimeout(() => { isScrolling = false; }, 800);
+            triggerAnim(currentSection, lastDirection);
+            setTimeout(() => { isScrolling = false; }, 700);
         }
 
-        function triggerAnim(sectionIndex) {
+        function triggerAnim(sectionIndex, direction) {
             const section = sections[sectionIndex];
             const items = section.querySelectorAll('.anim-item');
-            items.forEach(item => item.classList.remove('visible'));
+            // 重置所有元素
+            items.forEach(item => {
+                item.classList.remove('visible');
+                // 根据方向设置反向动画类
+                if (direction === 'up') {
+                    item.classList.add('reverse');
+                } else {
+                    item.classList.remove('reverse');
+                }
+            });
+            // 强制重排
             void section.offsetWidth;
-            items.forEach(item => item.classList.add('visible'));
+            // 触发显示
+            requestAnimationFrame(() => {
+                items.forEach(item => item.classList.add('visible'));
+            });
         }
 
+        // 鼠标滚轮
         window.addEventListener('wheel', (e) => {
             e.preventDefault();
             if (isScrolling) return;
             goToSection(e.deltaY > 0 ? currentSection + 1 : currentSection - 1);
         }, { passive: false });
 
-        let touchStartY = 0;
-        window.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
-        window.addEventListener('touchend', (e) => {
-            const diff = touchStartY - e.changedTouches[0].clientY;
-            if (Math.abs(diff) > 50) goToSection(diff > 0 ? currentSection + 1 : currentSection - 1);
+        // 触摸滑动（支持双向）
+        let touchStartY = 0, touchStartX = 0;
+        window.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+            touchStartX = e.touches[0].clientX;
         }, { passive: true });
 
+        window.addEventListener('touchend', (e) => {
+            const diffY = touchStartY - e.changedTouches[0].clientY;
+            const diffX = touchStartX - e.changedTouches[0].clientX;
+            // 垂直滑动优先，阈值降低到30px更适合手机
+            if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 30) {
+                if (diffY > 0) {
+                    // 向上滑 → 下一页
+                    goToSection(currentSection + 1);
+                } else {
+                    // 向下滑 → 上一页
+                    goToSection(currentSection - 1);
+                }
+            }
+        }, { passive: true });
+
+        // 键盘支持
         window.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); goToSection(currentSection + 1); }
             else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); goToSection(currentSection - 1); }
         });
 
-        window.addEventListener('DOMContentLoaded', () => triggerAnim(0));
+        // 页面加载时触发第一屏动画
+        window.addEventListener('DOMContentLoaded', () => triggerAnim(0, 'down'));
     </script>
 </body>
 </html>
