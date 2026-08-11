@@ -138,7 +138,7 @@
         .stat-number { font-size: clamp(20px,4.5vw,28px); font-weight: bold; display: block; }
         .stat-label { font-size: 10px; opacity: 0.7; margin-top: 4px; color: rgba(255,255,255,0.5); }
 
-        /* Team - 深色卡片 */
+        /* Team - 深色卡片 + 边缘光晕 */
         .section-team { 
             background: linear-gradient(180deg, #0a1628 0%, #0d1f3c 100%); 
         }
@@ -147,18 +147,43 @@
             max-width: 560px; width: 100%;
         }
         .team-card {
+            position: relative;
             background: rgba(255,255,255,0.03); 
-            border: 1px solid rgba(201, 168, 76, 0.12);
             border-radius: 16px; 
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             text-align: center;
             padding: 24px 16px;
-            transition: border-color 0.3s ease, transform 0.3s ease;
+            overflow: hidden;
+            cursor: pointer;
         }
-        .team-card:hover {
-            border-color: rgba(201, 168, 76, 0.3);
-            transform: translateY(-3px);
+        /* 边缘光晕层 */
+        .team-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 2px;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(201, 168, 76, 0.6),
+                rgba(30, 60, 114, 0.3),
+                transparent 40%
+            );
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .team-card:hover::before {
+            opacity: 1;
+        }
+        /* 内部内容层（防止被遮罩影响） */
+        .team-card-inner {
+            position: relative;
+            z-index: 1;
         }
         .team-avatar {
             width: 56px; height: 56px; border-radius: 50%;
@@ -442,28 +467,36 @@
             <p class="section-desc anim-item" style="transition-delay:.08s">行业精英领衔，实战经验丰富</p>
             <div class="team-grid">
                 <div class="team-card anim-item from-scale" style="transition-delay:.15s">
-                    <div class="team-avatar">💼</div>
-                    <div class="team-name">张导师</div>
-                    <div class="team-role">技术总监 / 资深三维艺术家</div>
-                    <div class="team-desc">15年经验，参与多部院线电影特效，精通 Maya、Houdini、Nuke。</div>
+                    <div class="team-card-inner">
+                        <div class="team-avatar">💼</div>
+                        <div class="team-name">张导师</div>
+                        <div class="team-role">技术总监 / 资深三维艺术家</div>
+                        <div class="team-desc">15年经验，参与多部院线电影特效，精通 Maya、Houdini、Nuke。</div>
+                    </div>
                 </div>
                 <div class="team-card anim-item from-scale" style="transition-delay:.25s">
-                    <div class="team-avatar"></div>
-                    <div class="team-name">李导师</div>
-                    <div class="team-role">创意总监 / 视觉设计师</div>
-                    <div class="team-desc">10年品牌视觉设计经验，擅长概念设计与艺术指导。</div>
+                    <div class="team-card-inner">
+                        <div class="team-avatar"></div>
+                        <div class="team-name">李导师</div>
+                        <div class="team-role">创意总监 / 视觉设计师</div>
+                        <div class="team-desc">10年品牌视觉设计经验，擅长概念设计与艺术指导。</div>
+                    </div>
                 </div>
                 <div class="team-card anim-item from-scale" style="transition-delay:.35s">
-                    <div class="team-avatar">‍🏫</div>
-                    <div class="team-name">王导师</div>
-                    <div class="team-role">高级讲师 / 剪辑师</div>
-                    <div class="team-desc">8年影视剪辑经验，精通 Premiere、After Effects。</div>
+                    <div class="team-card-inner">
+                        <div class="team-avatar">🏫</div>
+                        <div class="team-name">王导师</div>
+                        <div class="team-role">高级讲师 / 剪辑师</div>
+                        <div class="team-desc">8年影视剪辑经验，精通 Premiere、After Effects。</div>
+                    </div>
                 </div>
                 <div class="team-card anim-item from-scale" style="transition-delay:.45s">
-                    <div class="team-avatar">‍</div>
-                    <div class="team-name">赵导师</div>
-                    <div class="team-role">实训导师 / 动画师</div>
-                    <div class="team-desc">6年三维动画经验，专注角色动画与绑定技术。</div>
+                    <div class="team-card-inner">
+                        <div class="team-avatar">‍</div>
+                        <div class="team-name">赵导师</div>
+                        <div class="team-role">实训导师 / 动画师</div>
+                        <div class="team-desc">6年三维动画经验，专注角色动画与绑定技术。</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -693,6 +726,18 @@
                     setTimeout(() => triggerAnim(0, 'down'), 600);
                 }
             }, 4000);
+
+            // 团队卡片边缘光晕 - 鼠标跟踪
+            const teamCards = document.querySelectorAll('.team-card');
+            teamCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    card.style.setProperty('--mouse-x', `${x}%`);
+                    card.style.setProperty('--mouse-y', `${y}%`);
+                });
+            });
         });
     </script>
 </body>
