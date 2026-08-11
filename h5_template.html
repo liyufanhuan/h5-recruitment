@@ -218,7 +218,7 @@
             transform: translateY(0) translateX(0) scale(1) !important;
         }
 
-        /* ─ 开场动画 ─────────────────────────────────────────── */
+        /*  开场动画 ─────────────────────────────────────────── */
         .intro-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -228,7 +228,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity 1s ease, visibility 1s ease;
         }
         .intro-overlay.hidden {
             opacity: 0;
@@ -236,23 +236,27 @@
             pointer-events: none;
         }
         .intro-logo {
-            font-size: 60px;
-            margin-bottom: 20px;
-            animation: introPulse 1.5s ease-in-out infinite;
+            font-size: clamp(50px, 10vw, 70px);
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: introLogoIn 0.8s ease 0.3s forwards;
         }
-        @keyframes introPulse {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
+        @keyframes introLogoIn {
+            to { opacity: 1; transform: scale(1); }
         }
-        .intro-title {
-            font-size: clamp(24px, 5vw, 36px);
-            color: white;
-            font-weight: bold;
+        .intro-title-wrapper {
             overflow: hidden;
             white-space: nowrap;
             border-right: 3px solid #00A8E8;
             width: 0;
-            animation: introTyping 2s steps(12) 0.5s forwards, introBlink 0.6s step-end infinite;
+            max-width: 300px;
+            animation: introTyping 1.5s steps(8) 0.8s forwards, introBlink 0.5s step-end infinite;
+        }
+        .intro-title {
+            font-size: clamp(22px, 5vw, 32px);
+            color: white;
+            font-weight: bold;
         }
         @keyframes introTyping {
             from { width: 0; }
@@ -262,32 +266,32 @@
             50% { border-color: transparent; }
         }
         .intro-subtitle {
-            font-size: clamp(14px, 3vw, 18px);
-            color: rgba(255,255,255,0.7);
-            margin-top: 15px;
+            font-size: clamp(13px, 3vw, 16px);
+            color: rgba(255,255,255,0.6);
+            margin-top: 12px;
             opacity: 0;
-            animation: introFadeIn 1s ease 2.5s forwards;
+            transform: translateY(8px);
+            animation: introFadeUp 0.8s ease 2s forwards;
         }
-        @keyframes introFadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        @keyframes introFadeUp {
             to { opacity: 1; transform: translateY(0); }
         }
         .intro-progress {
-            width: 200px;
-            height: 3px;
+            width: 180px;
+            height: 2px;
             background: rgba(255,255,255,0.1);
-            border-radius: 2px;
-            margin-top: 40px;
+            border-radius: 1px;
+            margin-top: 35px;
             overflow: hidden;
             opacity: 0;
-            animation: introFadeIn 0.5s ease 1s forwards;
+            animation: introFadeUp 0.5s ease 1.2s forwards;
         }
         .intro-progress-bar {
             width: 0;
             height: 100%;
             background: linear-gradient(90deg, #0066CC, #00A8E8);
-            border-radius: 2px;
-            animation: introProgress 3s ease 0.5s forwards;
+            border-radius: 1px;
+            animation: introProgress 2.5s ease 1s forwards;
         }
         @keyframes introProgress {
             from { width: 0; }
@@ -299,7 +303,9 @@
     <!-- 开场动画遮罩 -->
     <div class="intro-overlay" id="introOverlay">
         <div class="intro-logo">🎓</div>
-        <div class="intro-title">济南信息工程学校</div>
+        <div class="intro-title-wrapper">
+            <div class="intro-title">济南信息工程学校</div>
+        </div>
         <div class="intro-subtitle">数字工厂实战教学 · 产教融合 · 互利共赢</div>
         <div class="intro-progress">
             <div class="intro-progress-bar"></div>
@@ -583,15 +589,17 @@
             else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); goToSection(currentSection - 1); }
         });
 
-        // 页面加载时触发第一屏动画 + 开场动画
+        // 页面加载时触发开场动画
         window.addEventListener('DOMContentLoaded', () => {
-            // 3.5秒后隐藏开场动画
+            // 4秒后隐藏开场动画并触发首屏内容
             setTimeout(() => {
                 const overlay = document.getElementById('introOverlay');
-                if (overlay) overlay.classList.add('hidden');
-                // 开场动画结束后触发第一屏内容动画
-                setTimeout(() => triggerAnim(0, 'down'), 400);
-            }, 3500);
+                if (overlay) {
+                    overlay.classList.add('hidden');
+                    // 等待遮罩淡出后再触发首屏动画
+                    setTimeout(() => triggerAnim(0, 'down'), 600);
+                }
+            }, 4000);
         });
     </script>
 </body>
