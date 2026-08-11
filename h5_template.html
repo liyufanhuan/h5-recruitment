@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>影视后期专业 - 校企合作招生</title>
+    <title>济南信息工程学校 - 数字工厂实战教学</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body {
@@ -32,7 +32,7 @@
 
         /* Hero */
         .section-hero {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; text-align: center;
+            background: linear-gradient(135deg, #0066CC 0%, #00A8E8 100%); color: white; text-align: center;
         }
         .section-hero::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
@@ -54,101 +54,103 @@
 
         /* Common */
         .section-title {
-            font-size: clamp(22px,5vw,30px); color: #1e3c72; margin-bottom: 10px; text-align: center;
+            font-size: clamp(22px,5vw,30px); color: #0066CC; margin-bottom: 10px; text-align: center;
         }
         .section-title::after {
             content: ''; display: block; width: 60px; height: 3px;
-            background: linear-gradient(90deg,#667eea,#764ba2); margin: 10px auto 0; border-radius: 2px;
+            background: linear-gradient(90deg,#0066CC,#00A8E8); margin: 10px auto 0; border-radius: 2px;
         }
         .section-desc { text-align: center; color: #666; margin-bottom: 25px; font-size: 15px; }
 
         /* Company */
-        .section-company { background: #f8f9fa; }
+        .section-company { background: #f0f7ff; }
         .company-card {
             background: white; border-radius: 12px; padding: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08); margin-bottom: 15px; max-width: 600px; width: 100%;
         }
-        .company-card h3 { color: #1e3c72; margin-bottom: 10px; font-size: 18px; }
+        .company-card h3 { color: #0066CC; margin-bottom: 10px; font-size: 18px; }
         .company-card p { color: #555; margin-bottom: 8px; font-size: 14px; }
         .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 15px; }
         .stat-item {
             text-align: center; padding: 12px 8px;
-            background: linear-gradient(135deg,#667eea,#764ba2); border-radius: 10px; color: white;
+            background: linear-gradient(135deg,#0066CC,#00A8E8); border-radius: 10px; color: white;
         }
         .stat-number { font-size: clamp(20px,4vw,28px); font-weight: bold; display: block; }
         .stat-label { font-size: 11px; opacity: 0.9; margin-top: 3px; }
 
-        /* Team */
-        .section-team { background: white; }
-        .team-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 15px; max-width: 600px; width: 100%; }
-        .team-member { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-        .member-avatar {
-            width: 100%; height: 100px; background: linear-gradient(135deg,#667eea,#764ba2);
-            display: flex; align-items: center; justify-content: center; color: white; font-size: 36px;
+        /* Courses */
+        .section-courses { background: white; }
+        .course-grid { display: grid; grid-template-columns: repeat(1,1fr); gap: 15px; max-width: 600px; width: 100%; }
+        .course-card {
+            background: #0066CC; color: white; border-radius: 12px; padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,102,204,0.2);
         }
-        .member-info { padding: 12px; }
-        .member-name { font-size: 16px; color: #1e3c72; margin-bottom: 3px; }
-        .member-role { font-size: 11px; color: #667eea; margin-bottom: 6px; }
-        .member-desc { font-size: 12px; color: #666; line-height: 1.4; }
+        .course-card h3 { font-size: 20px; margin-bottom: 10px; text-align: center; }
+        .course-card p { font-size: 13px; opacity: 0.95; line-height: 1.6; }
+        .course-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; justify-content: center; }
+        .course-tag {
+            background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 12px;
+        }
 
-        /* Cases */
-        .section-cases { background: #f0f4f8; }
-        .case-list {
+        /* Training */
+        .section-training { background: #f0f7ff; }
+        .training-list {
             display: flex; flex-direction: column; gap: 15px; max-width: 600px; width: 100%;
             max-height: 60vh; overflow-y: auto;
         }
-        .case-item {
+        .training-item {
             background: white; border-radius: 12px; overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08); display: flex; flex-shrink: 0;
         }
-        .case-video {
-            width: 120px; min-height: 100px; background: linear-gradient(135deg,#1e3c72,#2a5298);
+        .training-icon {
+            width: 120px; min-height: 100px; background: linear-gradient(135deg,#0066CC,#00A8E8);
             display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; flex-shrink: 0;
         }
-        .case-info { padding: 15px; flex: 1; }
-        .case-title { font-size: 15px; color: #1e3c72; margin-bottom: 6px; }
-        .case-desc { font-size: 12px; color: #666; margin-bottom: 8px; }
-        .case-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-        .tag { background: #f0f0f0; padding: 3px 10px; border-radius: 10px; font-size: 11px; color: #666; }
+        .training-info { padding: 15px; flex: 1; }
+        .training-title { font-size: 15px; color: #0066CC; margin-bottom: 6px; font-weight: bold; }
+        .training-desc { font-size: 12px; color: #666; margin-bottom: 8px; }
+        .training-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+        .tag { background: #e8f4ff; padding: 3px 10px; border-radius: 10px; font-size: 11px; color: #0066CC; }
 
-        /* Works */
-        .section-works { background: white; }
-        .works-grid {
+        /* Features */
+        .section-features { background: white; }
+        .features-grid {
             display: grid; grid-template-columns: repeat(2,1fr); gap: 12px;
             max-width: 600px; width: 100%; max-height: 60vh; overflow-y: auto;
         }
-        .work-item { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-        .work-thumb {
-            width: 100%; height: 100px; background: linear-gradient(135deg,#667eea,#764ba2);
-            display: flex; align-items: center; justify-content: center; color: white; font-size: 28px;
+        .feature-item {
+            background: white; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-align: center; padding: 20px;
         }
-        .work-info { padding: 10px; }
-        .work-title { font-size: 13px; color: #1e3c72; margin-bottom: 3px; }
-        .work-author { font-size: 11px; color: #999; }
+        .feature-icon { font-size: 36px; margin-bottom: 10px; }
+        .feature-title { font-size: 15px; color: #0066CC; margin-bottom: 5px; font-weight: bold; }
+        .feature-desc { font-size: 12px; color: #666; }
 
         /* CTA */
         .section-cta {
-            background: linear-gradient(135deg,#1e3c72,#2a5298); color: white; text-align: center;
+            background: linear-gradient(135deg,#0066CC,#00A8E8); color: white; text-align: center;
         }
         .section-cta h2 { font-size: clamp(24px,5vw,32px); margin-bottom: 12px; }
         .section-cta p { font-size: 16px; opacity: 0.9; margin-bottom: 25px; }
         .cta-button {
-            display: inline-block; background: white; color: #1e3c72; padding: 14px 36px;
+            display: inline-block; background: white; color: #0066CC; padding: 14px 36px;
             border-radius: 30px; font-size: 17px; font-weight: bold; text-decoration: none;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin-bottom: 30px;
         }
         .footer-info { font-size: 12px; opacity: 0.7; line-height: 1.8; }
+        .footer-badges { display: flex; gap: 20px; justify-content: center; margin-top: 15px; }
+        .footer-badge { display: flex; align-items: center; gap: 5px; font-size: 13px; }
 
         @media (max-width: 480px) {
-            .team-grid, .works-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
             .stats { grid-template-columns: 1fr; }
-            .case-item { flex-direction: column; }
-            .case-video { width: 100%; height: 100px; }
+            .training-item { flex-direction: column; }
+            .training-icon { width: 100%; height: 100px; }
             .fp-nav { right: 10px; }
             .fp-nav-dot { width: 10px; height: 10px; }
         }
 
-        /* ── 层级动画 ─────────────────────────────────────── */
+        /* ─ 层级动画 ─────────────────────────────────────── */
         .anim-item {
             opacity: 0;
             transform: translateY(40px);
@@ -168,126 +170,148 @@
     <div class="fullpage-wrapper" id="fullpageWrapper">
         <!-- 第1屏：Hero -->
         <div class="fp-section section-hero">
-            <h1 class="anim-item from-scale">🎬 影视后期专业</h1>
-            <p class="subtitle anim-item" style="transition-delay:.15s">校企合作 · 产教融合 · 实战驱动</p>
-            <div class="badge anim-item" style="transition-delay:.3s">三维动画 | 特效制作 | 影视剪辑</div>
+            <h1 class="anim-item from-scale">🎓 济南信息工程学校</h1>
+            <p class="subtitle anim-item" style="transition-delay:.15s">数字工厂实战教学 · 产教融合 · 互利共赢</p>
+            <div class="badge anim-item" style="transition-delay:.3s">影视后期 | 平面设计 | 三维动画</div>
             <div class="scroll-hint anim-item" style="transition-delay:.5s"></div>
         </div>
-        <!-- 第2屏：公司介绍 -->
+        <!-- 第2屏：学校介绍 -->
         <div class="fp-section section-company">
             <h2 class="section-title anim-item">关于我们</h2>
-            <p class="section-desc anim-item" style="transition-delay:.1s">深耕影视行业，赋能人才培养</p>
+            <p class="section-desc anim-item" style="transition-delay:.1s">以促进就业为导向，以能力提升为核心</p>
             <div class="company-card anim-item from-left" style="transition-delay:.2s">
-                <h3>XX数字创意科技有限公司</h3>
-                <p>专注于数字内容创作与影视后期制作，致力于将前沿技术与艺术创作相结合。</p>
-                <p>与多所高校建立深度合作，通过"校企协同、工学结合"模式培养实战人才。</p>
+                <h3>数字工厂实战教学基地</h3>
+                <p>全面提升学员技术水平与综合能力，通过真实项目驱动教学，让学员在校期间即具备行业实战能力。</p>
+                <p>国家职业技能鉴定 · 高技能人才培训 · 产教融合 互利共赢</p>
                 <div class="stats">
-                    <div class="stat-item anim-item from-scale" style="transition-delay:.35s"><span class="stat-number">10+</span><span class="stat-label">年行业经验</span></div>
-                    <div class="stat-item anim-item from-scale" style="transition-delay:.45s"><span class="stat-number">500+</span><span class="stat-label">成功案例</span></div>
-                    <div class="stat-item anim-item from-scale" style="transition-delay:.55s"><span class="stat-number">1000+</span><span class="stat-label">培养学员</span></div>
+                    <div class="stat-item anim-item from-scale" style="transition-delay:.35s"><span class="stat-number">3+</span><span class="stat-label">专业方向</span></div>
+                    <div class="stat-item anim-item from-scale" style="transition-delay:.45s"><span class="stat-number">100%</span><span class="stat-label">实战教学</span></div>
+                    <div class="stat-item anim-item from-scale" style="transition-delay:.55s"><span class="stat-number">∞</span><span class="stat-label">就业机会</span></div>
                 </div>
             </div>
             <div class="company-card anim-item from-right" style="transition-delay:.35s">
-                <h3>核心业务</h3>
-                <p>✓ 三维动画制作（角色动画、场景建模、特效渲染）</p>
-                <p>✓ 影视后期合成（调色、抠像、特效合成）</p>
-                <p>✓ 商业视频制作（宣传片、广告片、短视频）</p>
-                <p>✓ VR/AR 内容开发</p>
+                <h3>核心优势</h3>
+                <p>✓ 国家职业技能鉴定认证</p>
+                <p>✓ 高技能人才培训基地</p>
+                <p>✓ 真实项目驱动教学</p>
+                <p>✓ 校企深度合作 推荐就业</p>
             </div>
         </div>
-        <!-- 第3屏：团队介绍 -->
-        <div class="fp-section section-team">
-            <h2 class="section-title anim-item">师资团队</h2>
-            <p class="section-desc anim-item" style="transition-delay:.1s">行业精英领衔，实战经验丰富</p>
-            <div class="team-grid">
-                <div class="team-member anim-item from-left" style="transition-delay:.2s">
-                    <div class="member-avatar">‍💼</div>
-                    <div class="member-info">
-                        <div class="member-name">张导师</div>
-                        <div class="member-role">技术总监 / 资深三维艺术家</div>
-                        <div class="member-desc">15年经验，参与多部院线电影特效，精通 Maya、Houdini、Nuke。</div>
+        <!-- 第3屏：课程设置 -->
+        <div class="fp-section section-courses">
+            <h2 class="section-title anim-item">课程设置</h2>
+            <p class="section-desc anim-item" style="transition-delay:.1s">三大专业方向，全面覆盖数字创意领域</p>
+            <div class="course-grid">
+                <div class="course-card anim-item from-left" style="transition-delay:.2s">
+                    <h3>🎬 影视后期</h3>
+                    <p>栏目包装、特效合成、MG动画、短视频制作</p>
+                    <div class="course-tags">
+                        <span class="course-tag">Premiere</span>
+                        <span class="course-tag">After Effects</span>
+                        <span class="course-tag">剪辑</span>
                     </div>
                 </div>
-                <div class="team-member anim-item from-right" style="transition-delay:.3s">
-                    <div class="member-avatar">👩💼</div>
-                    <div class="member-info">
-                        <div class="member-name">李导师</div>
-                        <div class="member-role">创意总监 / 视觉设计师</div>
-                        <div class="member-desc">10年品牌视觉设计经验，擅长概念设计与艺术指导。</div>
+                <div class="course-card anim-item from-right" style="transition-delay:.35s">
+                    <h3>🎨 平面设计</h3>
+                    <p>海报、易拉宝、品牌Logo设计制作、电商设计</p>
+                    <div class="course-tags">
+                        <span class="course-tag">Photoshop</span>
+                        <span class="course-tag">Illustrator</span>
+                        <span class="course-tag">UI设计</span>
                     </div>
                 </div>
-                <div class="team-member anim-item from-left" style="transition-delay:.4s">
-                    <div class="member-avatar">‍🏫</div>
-                    <div class="member-info">
-                        <div class="member-name">王导师</div>
-                        <div class="member-role">高级讲师 / 剪辑师</div>
-                        <div class="member-desc">8年影视剪辑经验，精通 Premiere、After Effects。</div>
-                    </div>
-                </div>
-                <div class="team-member anim-item from-right" style="transition-delay:.5s">
-                    <div class="member-avatar">‍🏫</div>
-                    <div class="member-info">
-                        <div class="member-name">赵导师</div>
-                        <div class="member-role">实训导师 / 动画师</div>
-                        <div class="member-desc">6年三维动画经验，专注角色动画与绑定技术。</div>
+                <div class="course-card anim-item from-left" style="transition-delay:.5s">
+                    <h3>🧊 三维动画</h3>
+                    <p>场景搭建、骨骼绑定、三维动画、AI数字人、UE5虚幻</p>
+                    <div class="course-tags">
+                        <span class="course-tag">UE5</span>
+                        <span class="course-tag">三维建模</span>
+                        <span class="course-tag">AI数字人</span>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- 第4屏：教学案例 -->
-        <div class="fp-section section-cases">
-            <h2 class="section-title anim-item">教学案例</h2>
-            <p class="section-desc anim-item" style="transition-delay:.1s">真实项目驱动，学以致用</p>
-            <div class="case-list">
-                <div class="case-item anim-item from-left" style="transition-delay:.2s">
-                    <div class="case-video">▶️</div>
-                    <div class="case-info">
-                        <div class="case-title">《城市守护者》三维动画短片</div>
-                        <div class="case-desc">学生团队原创三维动画，从剧本到渲染全流程实战。</div>
-                        <div class="case-tags"><span class="tag">Maya</span><span class="tag">ZBrush</span><span class="tag">Arnold</span></div>
+        <!-- 第4屏：课程介绍-影视后期 -->
+        <div class="fp-section section-training">
+            <h2 class="section-title anim-item">课程介绍</h2>
+            <p class="section-desc anim-item" style="transition-delay:.1s">TRAINING BASE · 影视后期</p>
+            <div class="training-list">
+                <div class="training-item anim-item from-left" style="transition-delay:.2s">
+                    <div class="training-icon">🎥</div>
+                    <div class="training-info">
+                        <div class="training-title">主流软件操作</div>
+                        <div class="training-desc">本阶段课程包括 Premiere、After Effects、剪映等主流软件操作。</div>
+                        <div class="training-tags"><span class="tag">PR</span><span class="tag">AE</span><span class="tag">剪映</span></div>
                     </div>
                 </div>
-                <div class="case-item anim-item from-right" style="transition-delay:.35s">
-                    <div class="case-video">▶️</div>
-                    <div class="case-info">
-                        <div class="case-title">某品牌产品宣传片</div>
-                        <div class="case-desc">承接企业真实项目，体验完整工作流程。</div>
-                        <div class="case-tags"><span class="tag">AE</span><span class="tag">PR</span><span class="tag">C4D</span></div>
+                <div class="training-item anim-item from-right" style="transition-delay:.35s">
+                    <div class="training-icon"></div>
+                    <div class="training-info">
+                        <div class="training-title">前期文案策划</div>
+                        <div class="training-desc">掌握前期文案策划、机位设置、构图、布景及摄影运镜技巧。</div>
+                        <div class="training-tags"><span class="tag">文案策划</span><span class="tag">机位设置</span><span class="tag">运镜</span></div>
                     </div>
                 </div>
-                <div class="case-item anim-item from-left" style="transition-delay:.5s">
-                    <div class="case-video">▶️</div>
-                    <div class="case-info">
-                        <div class="case-title">VR 虚拟展厅项目</div>
-                        <div class="case-desc">结合虚拟现实技术，打造沉浸式展览空间。</div>
-                        <div class="case-tags"><span class="tag">Unity</span><span class="tag">Blender</span><span class="tag">VR</span></div>
+                <div class="training-item anim-item from-left" style="transition-delay:.5s">
+                    <div class="training-icon">🏭</div>
+                    <div class="training-info">
+                        <div class="training-title">行业运作全流程</div>
+                        <div class="training-desc">熟悉行业运作全流程，从策划到成片输出完整闭环。</div>
+                        <div class="training-tags"><span class="tag">全流程</span><span class="tag">实战</span><span class="tag">就业导向</span></div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- 第5屏：学生作品 -->
-        <div class="fp-section section-works">
-            <h2 class="section-title anim-item">学生作品</h2>
-            <p class="section-desc anim-item" style="transition-delay:.1s">优秀学员成果展示</p>
-            <div class="works-grid">
-                <div class="work-item anim-item from-scale" style="transition-delay:.15s"><div class="work-thumb">🎨</div><div class="work-info"><div class="work-title">科幻场景概念设计</div><div class="work-author">学员：陈同学</div></div></div>
-                <div class="work-item anim-item from-scale" style="transition-delay:.25s"><div class="work-thumb">🎬</div><div class="work-info"><div class="work-title">角色动画演示</div><div class="work-author">学员：刘同学</div></div></div>
-                <div class="work-item anim-item from-scale" style="transition-delay:.35s"><div class="work-thumb">✨</div><div class="work-info"><div class="work-title">特效合成作品</div><div class="work-author">学员：王同学</div></div></div>
-                <div class="work-item anim-item from-scale" style="transition-delay:.45s"><div class="work-thumb"></div><div class="work-info"><div class="work-title">三维角色建模</div><div class="work-author">学员：张同学</div></div></div>
-                <div class="work-item anim-item from-scale" style="transition-delay:.55s"><div class="work-thumb">🌆</div><div class="work-info"><div class="work-title">城市建筑可视化</div><div class="work-author">学员：李同学</div></div></div>
-                <div class="work-item anim-item from-scale" style="transition-delay:.65s"><div class="work-thumb">🎪</div><div class="work-info"><div class="work-title">动态图形设计</div><div class="work-author">学员：赵同学</div></div></div>
+        <!-- 第5屏：课程介绍-平面设计 -->
+        <div class="fp-section section-features">
+            <h2 class="section-title anim-item">平面设计课程</h2>
+            <p class="section-desc anim-item" style="transition-delay:.1s">Photoshop · Illustrator · UI设计</p>
+            <div class="features-grid">
+                <div class="feature-item anim-item from-scale" style="transition-delay:.15s">
+                    <div class="feature-icon">🖼️</div>
+                    <div class="feature-title">海报设计</div>
+                    <div class="feature-desc">商业海报、活动海报、宣传物料设计</div>
+                </div>
+                <div class="feature-item anim-item from-scale" style="transition-delay:.25s">
+                    <div class="feature-icon">🏷️</div>
+                    <div class="feature-title">品牌Logo</div>
+                    <div class="feature-desc">企业VI设计、品牌标识、视觉识别系统</div>
+                </div>
+                <div class="feature-item anim-item from-scale" style="transition-delay:.35s">
+                    <div class="feature-icon">🛒</div>
+                    <div class="feature-title">电商设计</div>
+                    <div class="feature-desc">Banner、店铺装修、产品详情页设计</div>
+                </div>
+                <div class="feature-item anim-item from-scale" style="transition-delay:.45s">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-title">UI设计</div>
+                    <div class="feature-desc">界面设计、交互原型、用户体验优化</div>
+                </div>
+                <div class="feature-item anim-item from-scale" style="transition-delay:.55s">
+                    <div class="feature-icon">📄</div>
+                    <div class="feature-title">折页/展架</div>
+                    <div class="feature-desc">宣传折页、易拉宝、展览展示物料</div>
+                </div>
+                <div class="feature-item anim-item from-scale" style="transition-delay:.65s">
+                    <div class="feature-icon"></div>
+                    <div class="feature-title">综合实战</div>
+                    <div class="feature-desc">真实商业项目，从需求到交付完整流程</div>
+                </div>
             </div>
         </div>
         <!-- 第6屏：CTA + Footer -->
         <div class="fp-section section-cta">
-            <h2 class="anim-item from-scale">加入我们，开启创意之旅</h2>
-            <p class="anim-item" style="transition-delay:.15s">与行业精英同行，用技术实现梦想</p>
+            <h2 class="anim-item from-scale">加入我们，成就数字创意人才</h2>
+            <p class="anim-item" style="transition-delay:.15s">国家职业技能鉴定 · 高技能人才培训</p>
             <a href="#" class="cta-button anim-item from-scale" style="transition-delay:.3s">立即咨询报名</a>
             <div class="footer-info anim-item" style="transition-delay:.45s">
-                <p>XX数字创意科技有限公司</p>
-                <p>联系电话：400-XXX-XXXX | 邮箱：contact@example.com</p>
-                <p>地址：XX市XX区XX路XX号</p>
-                <p style="margin-top:10px;">© 2026 All Rights Reserved</p>
+                <p>济南信息工程学校 · 数字工厂实战教学基地</p>
+                <p>联系电话：请咨询招生办 | 地址：济南市</p>
+                <div class="footer-badges">
+                    <div class="footer-badge">◆ 国家职业技能鉴定</div>
+                    <div class="footer-badge">◆ 高技能人才培训</div>
+                </div>
+                <p style="margin-top:15px;">© 2026 济南信息工程学校 All Rights Reserved</p>
             </div>
         </div>
     </div>
