@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>济南信息工程学校 数字工厂招生简章</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+SC:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 防止字体加载后变成斜体 */
+        * {
+            font-style: normal !important;
+        }
+        
+        /* 确保Instrument Serif字体只使用常规样式 */
+        .hero-heading,
+        .section-heading,
+        .step-number,
+        .step-card h3,
+        .feature-item h3,
+        .pricing-price,
+        .testimonial-text,
+        .detail-value,
+        .faq-heading,
+        .footer-logo,
+        .community-cta-text {
+            font-style: normal !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Hero -->
+    <section class="lumora-hero" id="hero">
+        <div class="video-layer active" data-index="0">
+            <video autoplay muted loop playsinline>
+                <source src="videos/数字工厂介绍.mp4" type="video/mp4">
+            </video>
+            <span class="video-label">数字工厂</span>
+        </div>
+        <div class="video-layer" data-index="1">
+            <video autoplay muted loop playsinline>
+                <source src="videos/数字工厂招生网站 hq.mp4" type="video/mp4">
+            </video>
+            <span class="video-label">影视后期</span>
+        </div>
+        <div class="video-layer" data-index="2">
+            <video autoplay muted loop playsinline>
+                <source src="videos/数字工厂招生网站 sanw .mp4" type="video/mp4">
+            </video>
+            <span class="video-label">三维动画</span>
+        </div>
+        <div class="video-layer" data-index="3">
+            <video autoplay muted loop playsinline>
+                <source src="videos/期待您的加入.mp4" type="video/mp4">
+            </video>
+            <span class="video-label">视觉设计</span>
+        </div>
+        <img class="png-overlay" src="https://soft-zoom-63098134.figma.site/_assets/v11/0b4a435b2df2747593c43d7a1c9b4578f7d8d90c.png" alt="" style="display:none;">
+        <!-- 磨砂玻璃遮罩层 -->
+        <div class="frosted-overlay"></div>
+        <div class="content-layer">
+            <nav class="hero-nav">
+                <a href="#" class="logo shiny-text">济南信息工程学校×山东智捷数字科技有限公司</a>
+                <div class="nav-pill liquid-glass desktop-nav">
+                    <a href="pages/intro.html">专班简介</a>
+                    <a href="pages/teachers.html">师资力量</a>
+                    <a href="pages/curriculum.html">课程设计</a>
+                    <a href="pages/works.html">毕业作品</a>
+                    <a href="pages/enroll.html" class="nav-cta">报名须知</a>
+                </div>
+                <button class="hamburger-btn liquid-glass mobile-nav-toggle" aria-label="切换菜单">
+                    <svg class="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </nav>
+            <div class="mobile-menu-overlay" id="mobileMenu">
+                <div class="mobile-menu-panel">
+                    <a href="pages/intro.html" class="mobile-link" style="--delay:100ms">专班简介</a>
+                    <a href="pages/teachers.html" class="mobile-link" style="--delay:150ms">师资力量</a>
+                    <a href="pages/curriculum.html" class="mobile-link" style="--delay:200ms">课程设计</a>
+                    <a href="pages/works.html" class="mobile-link" style="--delay:250ms">毕业作品</a>
+                    <a href="pages/enroll.html" class="mobile-cta liquid-glass" style="--delay:300ms">报名须知</a>
+                </div>
+            </div>
+            <div class="hero-content">
+                <div class="badge liquid-glass">从平面到三维，再到时间轴，重新定义你观看与创造世界的方式。</div>
+                <!-- Fold Text Animation -->
+                <div class="fold-text-wrapper" id="foldTextWrapper">
+                    <div class="fold-text-line" data-fold-line="0">
+                        <span class="fold-char" style="--i:0">2</span><span class="fold-char" style="--i:1">0</span><span class="fold-char" style="--i:2">2</span><span class="fold-char" style="--i:3">6</span><span class="fold-char" style="--i:4">数</span><span class="fold-char" style="--i:5">字</span><span class="fold-char" style="--i:6">工</span><span class="fold-char" style="--i:7">厂</span>
+                    </div>
+                    <div class="fold-text-line" data-fold-line="1">
+                        <span class="fold-char fold-char-small" style="--i:8">用</span><span class="fold-char fold-char-small" style="--i:9">视</span><span class="fold-char fold-char-small" style="--i:10">觉</span><span class="fold-char fold-char-small" style="--i:11">与</span><span class="fold-char fold-char-small" style="--i:12">世</span><span class="fold-char fold-char-small" style="--i:13">界</span><span class="fold-char fold-char-small" style="--i:14">对</span><span class="fold-char fold-char-small" style="--i:15">话</span><span class="fold-char fold-char-small" style="--i:16">。</span>
+                    </div>
+                    <div class="fold-text-line" data-fold-line="2">
+                        <span class="fold-char fold-char-small" style="--i:17">让</span><span class="fold-char fold-char-small" style="--i:18">心</span><span class="fold-char fold-char-small" style="--i:19">中</span><span class="fold-char fold-char-small" style="--i:20">的</span><span class="fold-char fold-char-small" style="--i:21">画</span><span class="fold-char fold-char-small" style="--i:22">面</span><span class="fold-char fold-char-small" style="--i:23">，</span><span class="fold-char fold-char-small" style="--i:24">正</span><span class="fold-char fold-char-small" style="--i:25">式</span><span class="fold-char fold-char-small" style="--i:26">开</span><span class="fold-char fold-char-small" style="--i:27">机</span><span class="fold-char fold-char-small" style="--i:28">。</span>
+                    </div>
+                </div>
+                <a href="pages/enroll.html" class="email-cta enroll-btn">报名须知</a>
+                <div class="video-switcher">
+                    <button class="switch-btn active" data-index="0">数字工厂</button>
+                    <button class="switch-btn" data-index="1">影视后期</button>
+                    <button class="switch-btn" data-index="2">三维动画</button>
+                    <button class="switch-btn" data-index="3">视觉设计</button>
+                </div>
+            </div>
+            <div class="bottom-stats" style="max-width:700px;margin:0 auto;">
+                <p style="font-family:system-ui,sans-serif;font-size:0.75rem;line-height:1.9;color:rgba(255,255,255,0.5);text-align:center;letter-spacing:0.3px;">平面，是让一瞬的目光沉淀为故事；三维，是让虚无的空间长出质感与重量；影视后期，是让时间学会呼吸、停顿与爆发。它们不是三个方向，而是同一种能力——用视觉思考，用画面表达，用作品和世界对话。来这里，你不只是在学软件，而是在训练一双看见结构、光影与节奏的眼睛。技术会更新，工具会迭代，但审美、叙事与创造的习惯，才是你真正带得走的东西。如果你心里一直有画面在涌动，这里，就是你落笔的第一帧。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 2: How It Works -->
+    <section class="page-section" id="how-it-works">
+        <div class="section-inner">
+            <span class="section-label">How It Works</span>
+            <h2 class="section-heading">Three Steps to Clarity</h2>
+            <p class="section-subtext">A simple, intentional process designed to help you reclaim your focus and create with purpose.</p>
+            <div class="steps-grid">
+                <div class="step-card liquid-glass"><div class="step-number">01</div><h3>Set Your Intention</h3><p>Define what clarity means for you today. Choose from guided sessions or create your own focus ritual.</p></div>
+                <div class="step-card liquid-glass"><div class="step-number">02</div><h3>Immerse &amp; Reflect</h3><p>Sink into curated soundscapes and visual environments. Let the noise fade as your mind settles.</p></div>
+                <div class="step-card liquid-glass"><div class="step-number">03</div><h3>Create with Purpose</h3><p>Channel your renewed focus into meaningful work. Track your progress and build lasting habits.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 3: Features -->
+    <section class="page-section features-section" id="features">
+        <div class="section-inner">
+            <span class="section-label">Features</span>
+            <h2 class="section-heading">Designed for Deep Work</h2>
+            <p class="section-subtext">Every feature is crafted to protect your attention and amplify your creative output.</p>
+            <div class="features-grid">
+                <div class="feature-item"><div class="feature-icon">🎧</div><h3>Adaptive Soundscapes</h3><p>AI-powered audio that adjusts to your environment and focus level in real time.</p></div>
+                <div class="feature-item"><div class="feature-icon">🌿</div><h3>Nature Immersion</h3><p>Cinematic video backgrounds from golden hour forests to still mountain lakes.</p></div>
+                <div class="feature-item"><div class="feature-icon">📊</div><h3>Focus Analytics</h3><p>Understand your peak productivity hours with detailed session insights.</p></div>
+                <div class="feature-item"><div class="feature-icon">🔒</div><h3>Distraction Shield</h3><p>Block notifications and apps during sessions. Your focus is sacred.</p></div>
+                <div class="feature-item"><div class="feature-icon">🤝</div><h3>Co-Focus Rooms</h3><p>Join silent co-working sessions with creators worldwide. Together, alone.</p></div>
+                <div class="feature-item"><div class="feature-icon"></div><h3>Wind Down Rituals</h3><p>Gentle transitions out of deep work. Protect your rest as fiercely as your focus.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 4: Immersive Experience -->
+    <section class="page-section experience-section" id="experience">
+        <div class="section-inner">
+            <span class="section-label">The Experience</span>
+            <h2 class="section-heading">Feel the Difference</h2>
+            <p class="section-subtext">Preview what a Lumora session feels like. Put on headphones and let the world fade away.</p>
+            <div class="experience-showcase">
+                <div class="experience-video-wrapper liquid-glass">
+                    <video autoplay muted loop playsinline class="experience-video">
+                        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260702_081127_0992a171-d3c6-4978-8213-0ec5df8b6d63.mp4" type="video/mp4">
+                    </video>
+                    <div class="experience-overlay">
+                        <div class="play-indicator"><svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg></div>
+                        <span class="experience-label">Golden Hour Session</span>
+                    </div>
+                </div>
+                <div class="experience-details">
+                    <div class="detail-item liquid-glass"><div class="detail-value">45min</div><div class="detail-label">Average Session</div></div>
+                    <div class="detail-item liquid-glass"><div class="detail-value">12</div><div class="detail-label">Soundscapes</div></div>
+                    <div class="detail-item liquid-glass"><div class="detail-value">4</div><div class="detail-label">Video Environments</div></div>
+                    <div class="detail-item liquid-glass"><div class="detail-value">∞</div><div class="detail-label">Possibilities</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 5: Pricing -->
+    <section class="page-section pricing-section" id="pricing">
+        <div class="section-inner">
+            <span class="section-label">Pricing</span>
+            <h2 class="section-heading">Invest in Your Mind</h2>
+            <p class="section-subtext">Simple, transparent pricing. No hidden fees. Cancel anytime.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card liquid-glass">
+                    <div class="pricing-tier">Free</div>
+                    <div class="pricing-price">$0<span>/month</span></div>
+                    <ul class="pricing-features"><li>3 guided sessions per week</li><li>Basic soundscapes</li><li>Focus timer</li><li>Community access</li></ul>
+                    <button class="pricing-btn liquid-glass">Get Started</button>
+                </div>
+                <div class="pricing-card featured liquid-glass">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-tier">Pro</div>
+                    <div class="pricing-price">$12<span>/month</span></div>
+                    <ul class="pricing-features"><li>Unlimited sessions</li><li>All soundscapes &amp; videos</li><li>Focus analytics dashboard</li><li>Distraction shield</li><li>Co-focus rooms</li><li>Priority support</li></ul>
+                    <button class="pricing-btn primary">Start Free Trial</button>
+                </div>
+                <div class="pricing-card liquid-glass">
+                    <div class="pricing-tier">Team</div>
+                    <div class="pricing-price">$8<span>/user/month</span></div>
+                    <ul class="pricing-features"><li>Everything in Pro</li><li>Team analytics</li><li>Shared co-focus rooms</li><li>Admin dashboard</li><li>Dedicated success manager</li></ul>
+                    <button class="pricing-btn liquid-glass">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 6: Community -->
+    <section class="page-section community-section" id="community">
+        <div class="section-inner">
+            <span class="section-label">Community</span>
+            <h2 class="section-heading">12,000+ Creators Finding Clarity</h2>
+            <p class="section-subtext">Join a global community of intentional creators who protect their focus and create with purpose.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card liquid-glass">
+                    <p class="testimonial-text">"Lumora transformed my mornings. I went from scrolling through feeds to writing 2,000 words before breakfast."</p>
+                    <div class="testimonial-author"><div class="author-avatar">S</div><div><div class="author-name">Sarah Chen</div><div class="author-role">Novelist</div></div></div>
+                </div>
+                <div class="testimonial-card liquid-glass">
+                    <p class="testimonial-text">"The co-focus rooms are magic. Working silently alongside others keeps me accountable without any pressure."</p>
+                    <div class="testimonial-author"><div class="author-avatar">M</div><div><div class="author-name">Marcus Rivera</div><div class="author-role">Product Designer</div></div></div>
+                </div>
+                <div class="testimonial-card liquid-glass">
+                    <p class="testimonial-text">"I've tried every focus app. Lumora is the only one that actually respects my attention instead of exploiting it."</p>
+                    <div class="testimonial-author"><div class="author-avatar">A</div><div><div class="author-name">Aisha Patel</div><div class="author-role">Research Scientist</div></div></div>
+                </div>
+            </div>
+            <div class="community-cta-wrapper">
+                <p class="community-cta-text">Ready to join the movement?</p>
+                <a href="#get-started" class="community-cta-btn liquid-glass">Join the Community</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 7: Get Started + FAQ -->
+    <section class="page-section get-started-section" id="get-started">
+        <div class="section-inner">
+            <span class="section-label">Get Started</span>
+            <h2 class="section-heading">Begin Your Journey Today</h2>
+            <p class="section-subtext">Your clearest, most focused self is waiting. All it takes is one session.</p>
+            <div class="final-cta-wrapper">
+                <div class="email-input-wrapper large liquid-glass">
+                    <input type="email" placeholder="Enter your email" class="email-input">
+                    <button class="email-cta large">Start Free Trial</button>
+                </div>
+                <p class="cta-note">No credit card required · 14-day free trial · Cancel anytime</p>
+            </div>
+            <div class="faq-section">
+                <h3 class="faq-heading">Frequently Asked Questions</h3>
+                <div class="faq-list">
+                    <div class="faq-item liquid-glass">
+                        <button class="faq-question"><span>What happens during the free trial?</span><svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg></button>
+                        <div class="faq-answer"><p>You get full access to all Pro features for 14 days — unlimited sessions, all soundscapes, analytics, co-focus rooms, and more. No credit card required to start.</p></div>
+                    </div>
+                    <div class="faq-item liquid-glass">
+                        <button class="faq-question"><span>Can I use Lumora on multiple devices?</span><svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg></button>
+                        <div class="faq-answer"><p>Yes! Your account syncs across all your devices — desktop, tablet, and phone. Start a session on your laptop and continue on your phone seamlessly.</p></div>
+                    </div>
+                    <div class="faq-item liquid-glass">
+                        <button class="faq-question"><span>How is Lumora different from other focus apps?</span><svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg></button>
+                        <div class="faq-answer"><p>Lumora combines cinematic visuals, adaptive audio, and intentional design into a single experience. We don't gamify focus or sell your data — we simply create the conditions for deep work.</p></div>
+                    </div>
+                    <div class="faq-item liquid-glass">
+                        <button class="faq-question"><span>Is there a team or enterprise plan?</span><svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6,9 12,15 18,9"/></svg></button>
+                        <div class="faq-answer"><p>Yes! Our Team plan includes shared co-focus rooms, team analytics, admin dashboards, and a dedicated success manager. Contact us for custom enterprise pricing.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand"><a href="#" class="footer-logo">Lumora</a><p>Clarity in an endlessly noisy universe.</p></div>
+            <div class="footer-links">
+                <div class="footer-col"><h4>Product</h4><a href="#how-it-works">How It Works</a><a href="#features">Features</a><a href="#pricing">Pricing</a></div>
+                <div class="footer-col"><h4>Company</h4><a href="#">About</a><a href="#">Blog</a><a href="#">Careers</a></div>
+                <div class="footer-col"><h4>Support</h4><a href="#">Help Center</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Lumora. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top liquid-glass" id="backToTop" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18,15 12,9 6,15"/></svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
