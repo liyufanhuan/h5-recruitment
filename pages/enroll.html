@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>报名须知 - 数字工厂</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="page.css">
+    <style>
+        /* MagicBento 魔法便当盒效果 */
+        .magic-bento-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 星星背景 */
+        .stars-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(132, 0, 255, 0.6);
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* 信息区块样式 */
+        .info-section {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 32px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* 聚光灯效果 */
+        .info-section::before {
+            content: '';
+            position: absolute;
+            top: var(--spotlight-y, 50%);
+            left: var(--spotlight-x, 50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(132, 0, 255, 0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .info-section:hover::before {
+            opacity: 1;
+        }
+
+        /* 边框发光效果 */
+        .info-section::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 20px;
+            padding: 1px;
+            background: linear-gradient(135deg, 
+                rgba(132, 0, 255, 0) 0%, 
+                rgba(132, 0, 255, 0.3) 50%, 
+                rgba(132, 0, 255, 0) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .info-section:hover::after {
+            opacity: 1;
+        }
+
+        .info-section > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 点击粒子效果 */
+        .click-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(132, 0, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* 联系区块特殊样式 */
+        .contact-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .section-title {
+            font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            font-style: normal;
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-text {
+            font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .section-text.highlight {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        /* 时间线样式 */
+        .timeline {
+            margin-top: 24px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 6px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-date {
+            font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            white-space: nowrap;
+            min-width: 180px;
+            padding-top: 2px;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-content strong {
+            display: block;
+            font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content p {
+            font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .note {
+            margin-top: 24px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.75);
+            border-left: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* 联系方式样式 */
+        .contact-info {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .contact-label {
+            font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            min-width: 80px;
+        }
+
+        .contact-phones {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .phone-link {
+            font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .phone-link:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .info-section {
+                padding: 28px 20px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .section-text.highlight {
+                font-size: 1.6rem;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .timeline-date {
+                min-width: auto;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .contact-phones {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .phone-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 星星背景 -->
+    <div class="stars-bg" id="starsBg"></div>
+
+    <nav class="page-nav">
+        <a href="../index.html" class="page-logo">济南信息工程学校×山东智捷数字科技有限公司</a>
+        <a href="../index.html" class="back-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+            返回首页
+        </a>
+    </nav>
+
+    <main class="page-body magic-bento-container">
+        <div class="page-header">
+            <span class="page-label">Digital Factory · 2026</span>
+            <h1 class="page-title">报名须知</h1>
+            <p class="page-desc">了解招生对象、报名流程，开启你的创意之旅。</p>
+        </div>
+
+        <div class="enroll-content">
+            <!-- 招生对象 -->
+            <section class="info-section">
+                <h2 class="section-title">招生对象</h2>
+                <p class="section-text">2023级计算机应用专业在校学生</p>
+            </section>
+
+            <!-- 招生人数 -->
+            <section class="info-section">
+                <h2 class="section-title">招生人数</h2>
+                <p class="section-text highlight">30人</p>
+            </section>
+
+            <!-- 招生进程 -->
+            <section class="info-section">
+                <h2 class="section-title">招生进程</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026.08.18 - 2026.08.25</div>
+                        <div class="timeline-content">
+                            <strong>报名阶段</strong>
+                            <p>请详细填写报名表并交到班主任处</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026.08.26 - 2026.08.31</div>
+                        <div class="timeline-content">
+                            <strong>线上面试</strong>
+                            <p>通过线上方式进行初步面试筛选</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026.09.01 - 2026.09.02</div>
+                        <div class="timeline-content">
+                            <strong>线下复试</strong>
+                            <p>现场复试，最终确定录取名单</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="note">8月31日欢迎同学们到专班咨询。</p>
+            </section>
+
+            <!-- 联系方式 -->
+            <section class="info-section contact-section">
+                <h2 class="section-title">联系方式</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-label">李老师</span>
+                        <div class="contact-phones">
+                            <a href="tel:17598007717" class="phone-link">17598007717</a>
+                            <a href="tel:15253143083" class="phone-link">15253143083</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">吕老师</span>
+                        <div class="contact-phones">
+                            <a href="tel:13001568218" class="phone-link">13001568218</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // 创建星星背景
+        const starsBg = document.getElementById('starsBg');
+        const starCount = 50;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 3}s`;
+            star.style.animationDuration = `${2 + Math.random() * 2}s`;
+            starsBg.appendChild(star);
+        }
+
+        // 聚光灯效果
+        const sections = document.querySelectorAll('.info-section');
+
+        sections.forEach(section => {
+            section.addEventListener('mousemove', e => {
+                const rect = section.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                section.style.setProperty('--spotlight-x', `${x}px`);
+                section.style.setProperty('--spotlight-y', `${y}px`);
+            });
+
+            // 点击粒子效果
+            section.addEventListener('click', e => {
+                const rect = section.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                for (let i = 0; i < 12; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'click-particle';
+                    section.appendChild(particle);
+
+                    const angle = (Math.PI * 2 * i) / 12;
+                    const velocity = 40 + Math.random() * 40;
+
+                    particle.style.left = `${x}px`;
+                    particle.style.top = `${y}px`;
+                    particle.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+
+                    requestAnimationFrame(() => {
+                        particle.style.transform = `translate(${Math.cos(angle) * velocity}px, ${Math.sin(angle) * velocity}px)`;
+                        particle.style.opacity = '0';
+                    });
+
+                    setTimeout(() => particle.remove(), 600);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
