@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课程设计 - 数字工厂</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+SC:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="page.css">
+    <style>
+        /* 课程模块容器 */
+        .curriculum-modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        /* 模块卡片 */
+        .module-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 40px 32px;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+        }
+
+        /* 模块图标 */
+        .module-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* 模块标题 */
+        .module-title {
+            font-family: 'Instrument Serif', serif;
+            font-style: normal;
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        /* 模块副标题 */
+        .module-subtitle {
+            font-family: system-ui, sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* 内容区域 */
+        .module-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* 内容区块 */
+        .content-section h3 {
+            font-family: system-ui, sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 12px;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .content-section li {
+            font-family: system-ui, sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.65);
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .content-section li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .curriculum-modules {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .module-card {
+                padding: 32px 24px;
+            }
+
+            .module-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="page-nav">
+        <a href="../index.html" class="page-logo">济南信息工程学校×山东智捷数字科技有限公司</a>
+        <a href="../index.html" class="back-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+            返回首页
+        </a>
+    </nav>
+
+    <main class="page-body">
+        <div class="page-header">
+            <span class="page-label">DIGITAL FACTORY · 2026</span>
+            <h1 class="page-title">课程设计</h1>
+            <p class="page-desc">系统化课程体系，从基础到进阶，全面覆盖影视后期、三维动画与视觉设计三大核心方向。</p>
+        </div>
+
+        <div class="curriculum-modules">
+            <!-- 影视后期模块 -->
+            <section class="module-card">
+                <div class="module-icon">🎬</div>
+                <h2 class="module-title">影视后期</h2>
+                <p class="module-subtitle">剪辑·特效·调色·合成</p>
+                <div class="module-content">
+                    <div class="content-section">
+                        <h3>基础阶段</h3>
+                        <ul>
+                            <li>视频剪辑基础（Premiere Pro）</li>
+                            <li>音频处理与配乐</li>
+                            <li>色彩理论与调色基础</li>
+                            <li>字幕与标题设计</li>
+                        </ul>
+                    </div>
+                    <div class="content-section">
+                        <h3>进阶阶段</h3>
+                        <ul>
+                            <li>特效制作（After Effects）</li>
+                            <li>绿幕抠像与合成</li>
+                            <li>动态图形设计</li>
+                            <li>多机位剪辑技巧</li>
+                        </ul>
+                    </div>
+                    <div class="content-section">
+                        <h3>实战项目</h3>
+                        <ul>
+                            <li>短片完整后期制作</li>
+                            <li>商业广告片制作</li>
+                            <li>纪录片后期处理</li>
+                            <li>个人作品集打造</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 三维动画模块 -->
+            <section class="module-card">
+                <div class="module-icon">🎨</div>
+                <h2 class="module-title">三维动画</h2>
+                <p class="module-subtitle">建模·绑定·动画·渲染</p>
+                <div class="module-content">
+                    <div class="content-section">
+                        <h3>基础阶段</h3>
+                        <ul>
+                            <li>三维软件基础（Blender/Maya）</li>
+                            <li>基础建模技术</li>
+                            <li>材质与贴图制作</li>
+                            <li>灯光与摄像机设置</li>
+                        </ul>
+                    </div>
+                    <div class="content-section">
+                        <h3>进阶阶段</h3>
+                        <ul>
+                            <li>角色建模与拓扑</li>
+                            <li>骨骼绑定与权重</li>
+                            <li>关键帧动画原理</li>
+                            <li>粒子系统与动力学</li>
+                        </ul>
+                    </div>
+                    <div class="content-section">
+                        <h3>实战项目</h3>
+                        <ul>
+                            <li>角色动画短片</li>
+                            <li>产品可视化动画</li>
+                            <li>建筑漫游动画</li>
+                            <li>个人动画作品集</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 视觉设计模块 -->
+            <section class="module-card">
+                <div class="module-icon">✨</div>
+                <h2 class="module-title">视觉设计</h2>
+                <p class="module-subtitle">品牌·包装·UI·插画</p>
+                <div class="module-content">
+                    <div class="content-section">
+                        <h3>基础阶段</h3>
+                        <ul>
+                            <li>设计软件基础（Photoshop/Illustrator）</li>
+                            <li>色彩搭配与版式设计</li>
+                            <li>字体设计与应用</li>
+                            <li>图形创意与表现</li>
+                        </ul>
+                    </div>
+                    <div class="content-section">
+                        <h3>进阶阶段</h3>
+                        <ul>
+                            <li>品牌形象设计</li>
+                            <li>包装设计实务</li>
+                            <li>UI/UX界面设计</li>
+                            <li>商业插画创作</li>
+                        </ul>
+                    </div>
+                    <div class="content-section">
+                        <h3>实战项目</h3>
+                        <ul>
+                            <li>完整品牌视觉系统</li>
+                            <li>产品包装设计案</li>
+                            <li>APP界面设计</li>
+                            <li>个人设计作品集</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
