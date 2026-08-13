@@ -1,0 +1,1340 @@
+/* ============================================
+   Lumora - Mindfulness App Hero Section
+   ============================================ */
+
+/* Fallback font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;800&display=swap');
+
+/* DingTalk JinBuTi Font (钉钉进步体) */
+@font-face {
+    font-family: 'DingTalk JinBuTi';
+    src: url('https://cdn.jsdelivr.net/gh/chengrang/dingtalk-jinbuti@master/DingTalk-JinBuTi.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/chengrang/dingtalk-jinbuti@master/DingTalk-JinBuTi.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-style: normal;
+}
+
+html, body {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+    height: 100%;
+    font-style: normal !important;
+}
+
+body {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-style: normal !important;
+}
+
+/* ============================================
+   Liquid Glass Effect
+   ============================================ */
+.liquid-glass {
+    background: rgba(255, 255, 255, 0.01);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.liquid-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(180deg,
+        rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+        rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+        rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* ============================================
+   Hero Section Container
+   ============================================ */
+.lumora-hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+}
+
+/* ============================================
+   Background Video Layer
+   ============================================ */
+.video-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1000ms ease-in-out;
+    z-index: 0;
+}
+
+.video-layer.active {
+    opacity: 1;
+}
+
+.video-layer video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-label {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    z-index: 1;
+}
+
+/* ============================================
+   PNG Overlay with Train-Bob Animation
+   ============================================ */
+.png-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    pointer-events: none;
+    animation: train-bob 3s ease-in-out infinite;
+    transform: scale(1.03);
+}
+
+@keyframes train-bob {
+    0%, 100% { transform: scale(1.03) translateY(0); }
+    50% { transform: scale(1.03) translateY(-6px); }
+}
+
+/* ============================================
+   Frosted Glass Overlay (over video, under content)
+   ============================================ */
+.frosted-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px) saturate(1.2);
+    -webkit-backdrop-filter: blur(6px) saturate(1.2);
+}
+
+/* ============================================
+   Content Layer
+   ============================================ */
+.content-layer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px 32px;
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+.hero-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logo {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-style: normal;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+    position: relative;
+    display: inline-block;
+    /* ShinyText gradient applied to text itself */
+    background-image: linear-gradient(
+        120deg,
+        #b5b5b5 0%,
+        #b5b5b5 35%,
+        #ffffff 50%,
+        #b5b5b5 65%,
+        #b5b5b5 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shiny-text-sweep 2s ease-in-out infinite;
+}
+
+@keyframes shiny-text-sweep {
+    0% {
+        background-position: 150% center;
+    }
+    100% {
+        background-position: -50% center;
+    }
+}
+
+/* Pause on hover */
+.shiny-text:hover {
+    animation-play-state: paused;
+}
+
+.nav-pill {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 9999px;
+}
+
+@media (min-width: 768px) {
+    .nav-pill { display: flex; }
+}
+
+.nav-pill a {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: color 0.2s;
+}
+
+.nav-pill a:hover {
+    color: #fff;
+}
+
+.nav-cta {
+    background: #fff !important;
+    color: #000 !important;
+    font-weight: 600;
+    padding: 8px 20px !important;
+    border-radius: 9999px !important;
+}
+
+/* Hamburger Button */
+.hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .hamburger-btn { display: none; }
+}
+
+.icon-menu, .icon-close {
+    position: absolute;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-menu {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.icon-close {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.75);
+}
+
+.hamburger-btn.open .icon-menu {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.75);
+}
+
+.hamburger-btn.open .icon-close {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+/* ============================================
+   Mobile Menu Overlay
+   ============================================ */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1), visibility 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.mobile-link {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.875rem;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1), transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: var(--delay, 0ms);
+}
+
+.mobile-menu-overlay.open .mobile-link {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-cta {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 14px 32px;
+    border-radius: 9999px;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1), transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: var(--delay, 0ms);
+}
+
+.mobile-menu-overlay.open .mobile-cta {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ============================================
+   Hero Content (Centered)
+   ============================================ */
+.hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+    padding: 20px 0;
+    transition: color 700ms ease;
+}
+
+.hero-content.dark-mode {
+    color: #182C41;
+}
+
+.hero-content.dark-mode .badge,
+.hero-content.dark-mode .email-input-wrapper {
+    color: #182C41;
+}
+
+.hero-content.dark-mode .hero-heading,
+.hero-content.dark-mode .hero-subtext {
+    color: #182C41;
+}
+
+.hero-content.dark-mode .switch-btn {
+    color: #182C41;
+}
+
+.hero-content.dark-mode .switch-btn:not(.active) {
+    opacity: 0.5;
+}
+
+/* Badge */
+.badge {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.75rem;
+    padding: 8px 20px;
+    border-radius: 9999px;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 700ms ease;
+}
+
+/* Heading */
+.hero-heading {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-style: normal;
+    font-size: 2.25rem;
+    line-height: 1.1;
+    max-width: 4xl;
+    color: #fff;
+    transition: color 700ms ease;
+}
+
+@media (min-width: 640px) { .hero-heading { font-size: 3rem; } }
+@media (min-width: 768px) { .hero-heading { font-size: 4.5rem; } }
+@media (min-width: 1024px) { .hero-heading { font-size: 5.5rem; } }
+
+/* Subtext */
+.hero-subtext {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 36rem;
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 700ms ease;
+}
+
+/* Email Input */
+.email-input-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 6px 6px 6px 20px;
+    border-radius: 9999px;
+    max-width: 20rem;
+    width: 100%;
+    margin: 0 auto;
+    transition: color 700ms ease;
+}
+
+@media (min-width: 640px) {
+    .email-input-wrapper { max-width: 24rem; }
+}
+
+/* Enroll button standalone (no wrapper) */
+.enroll-btn {
+    display: inline-block;
+    padding: 14px 40px;
+    background: #fff;
+    color: #000;
+    border-radius: 9999px;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 8px;
+}
+
+.enroll-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+.email-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.875rem;
+    color: #fff;
+    min-width: 0;
+}
+
+.email-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.email-cta {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.2s;
+}
+
+.email-cta:hover {
+    transform: scale(1.05);
+}
+
+/* Video Switcher */
+.video-switcher {
+    display: flex;
+    gap: 24px;
+    margin-top: 8px;
+}
+
+.switch-btn {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.8rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px 0;
+    transition: all 0.3s ease, color 700ms ease;
+}
+
+.switch-btn.active {
+    border-bottom-color: #fff;
+    opacity: 1;
+}
+
+.switch-btn:not(.active) {
+    opacity: 0.5;
+}
+
+.switch-btn:hover:not(.active) {
+    opacity: 0.8;
+}
+
+/* ============================================
+   Fold Text Animation (3D fold unfold)
+   ============================================ */
+.fold-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 0 auto 20px;
+    perspective: 700px;
+    width: 100%;
+}
+
+.fold-text-line {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    line-height: 1.2;
+    width: 100%;
+}
+
+.fold-char {
+    display: inline-block;
+    font-family: 'DingTalk JinBuTi', 'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+    font-size: clamp(3rem, 12vw, 7rem);
+    font-weight: 800;
+    letter-spacing: -4px;
+    color: #ffffff;
+    transform-origin: top center;
+    transform: rotateX(-90deg) scaleY(0);
+    opacity: 0;
+    /* Crease shading effect */
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55);
+    will-change: transform, opacity;
+}
+
+/* 缩小第二、三行文字 */
+.fold-char-small {
+    font-size: clamp(1.8rem, 6vw, 3.5rem) !important;
+    letter-spacing: -2px;
+}
+
+/* Responsive sizing */
+@media (max-width: 768px) {
+    .fold-char {
+        letter-spacing: -2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fold-char {
+        letter-spacing: -1px;
+    }
+}
+
+/* ============================================
+   Bottom Stats
+   ============================================ */
+.bottom-stats {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding-top: 24px;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 640px) {
+    .bottom-stats { font-size: 0.875rem; }
+}
+
+.stat-divider {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .stat-divider { display: inline; }
+}
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+@media (max-width: 767px) {
+    .content-layer {
+        padding: 16px 20px;
+    }
+
+    .video-switcher {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .switch-btn {
+        font-size: 0.75rem;
+    }
+
+    .bottom-stats {
+        flex-wrap: wrap;
+        gap: 8px 12px;
+    }
+}
+
+/* ============================================
+   Page Sections (Below Hero)
+   ============================================ */
+.page-section {
+    padding: 100px 32px;
+    background: #0a0a0a;
+}
+
+.features-section {
+    background: #0f0f0f;
+}
+
+.pricing-section {
+    background: #0a0a0a;
+}
+
+.community-section {
+    background: #0f0f0f;
+}
+
+.section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-label {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    display: block;
+    margin-bottom: 16px;
+}
+
+.section-heading {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-style: normal;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+    .section-heading { font-size: 3.5rem; }
+}
+
+.section-subtext {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin-bottom: 60px;
+}
+
+/* Steps Grid */
+.steps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+@media (min-width: 768px) {
+    .steps-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.step-card {
+    padding: 40px 32px;
+    border-radius: 20px;
+}
+
+.step-number {
+    font-family: 'Instrument Serif', serif;
+    font-style: normal;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.15);
+    margin-bottom: 16px;
+}
+
+.step-card h3 {
+    font-family: 'Instrument Serif', serif;
+    font-style: normal;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.step-card p {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+}
+
+@media (min-width: 640px) {
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+    .features-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.feature-item {
+    padding: 8px 0;
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+.feature-item h3 {
+    font-family: 'Instrument Serif', serif;
+    font-style: normal;
+    font-size: 1.25rem;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.feature-item p {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* Pricing Grid */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (min-width: 768px) {
+    .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.pricing-card {
+    padding: 40px 32px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.pricing-card.featured {
+    background: rgba(255, 255, 255, 0.04);
+    transform: scale(1.02);
+}
+
+.pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    color: #000;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 16px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.pricing-tier {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+}
+
+.pricing-price {
+    font-family: 'Instrument Serif', serif;
+    font-style: normal;
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 24px;
+}
+
+.pricing-price span {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+}
+
+.pricing-features {
+    list-style: none;
+    margin-bottom: 32px;
+}
+
+.pricing-features li {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pricing-features li:last-child {
+    border-bottom: none;
+}
+
+.pricing-btn {
+    width: 100%;
+    padding: 14px 24px;
+    border-radius: 9999px;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: none;
+}
+
+.pricing-btn:hover {
+    transform: scale(1.03);
+}
+
+.pricing-btn.primary {
+    background: #fff;
+    color: #000;
+}
+
+/* Testimonials Grid */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+@media (min-width: 768px) {
+    .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.testimonial-card {
+    padding: 32px;
+    border-radius: 20px;
+}
+
+.testimonial-text {
+    font-family: 'Instrument Serif', serif;
+    font-style: normal;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 24px;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.author-name {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.author-role {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.community-cta-wrapper {
+    text-align: center;
+}
+
+.community-cta-text {
+    font-family: 'Instrument Serif', serif;
+    font-style: normal;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+.community-cta-btn {
+    display: inline-block;
+    padding: 16px 40px;
+    border-radius: 9999px;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.community-cta-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Footer */
+.site-footer {
+    background: #050505;
+    padding: 80px 32px 40px;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-brand {
+    margin-bottom: 60px;
+}
+
+.footer-logo {
+    font-family: 'Instrument Serif', serif;
+    font-style: normal;
+    font-size: 1.75rem;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.footer-brand p {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+@media (min-width: 768px) {
+    .footer-links { grid-template-columns: repeat(3, 1fr); }
+}
+
+.footer-col h4 {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 16px;
+}
+
+.footer-col a {
+    display: block;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 4px 0;
+    transition: color 0.2s;
+}
+
+.footer-col a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 24px;
+}
+
+.footer-bottom p {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive for page sections */
+@media (max-width: 767px) {
+    .page-section {
+        padding: 60px 20px;
+    }
+
+    .section-heading {
+        font-size: 2rem;
+    }
+
+    .section-subtext {
+        font-size: 0.95rem;
+        margin-bottom: 40px;
+    }
+
+    .step-card,
+    .pricing-card,
+    .testimonial-card {
+        padding: 28px 24px;
+    }
+
+    .site-footer {
+        padding: 60px 20px 30px;
+    }
+}
+
+/* ============================================
+   Page 4: Immersive Experience
+   ============================================ */
+.experience-section {
+    background: #0a0a0a;
+}
+
+.experience-showcase {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .experience-showcase {
+        grid-template-columns: 1.5fr 1fr;
+        gap: 48px;
+    }
+}
+
+.experience-video-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+}
+
+.experience-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.experience-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s;
+}
+
+.experience-video-wrapper:hover .experience-overlay {
+    opacity: 0;
+}
+
+.play-indicator {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.experience-label {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+}
+
+.experience-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.detail-item {
+    padding: 24px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.detail-value {
+    font-family: 'Instrument Serif', serif;
+    font-style: normal;
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.detail-label {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ============================================
+   Page 7: Get Started + FAQ
+   ============================================ */
+.get-started-section {
+    background: #0a0a0a;
+}
+
+.final-cta-wrapper {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.email-input-wrapper.large {
+    max-width: 28rem;
+    margin: 0 auto 16px;
+    padding: 8px 8px 8px 24px;
+}
+
+.email-cta.large {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+}
+
+.cta-note {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.faq-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-heading {
+    font-family: 'Instrument Serif', serif;
+    font-style: normal;
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.faq-question span {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+.faq-chevron {
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-chevron {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+}
+
+.faq-item.open .faq-answer {
+    max-height: 200px;
+    padding: 0 24px 20px;
+}
+
+.faq-answer p {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive for experience & FAQ */
+@media (max-width: 767px) {
+    .experience-details {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .detail-item {
+        padding: 16px;
+    }
+
+    .detail-value {
+        font-size: 1.5rem;
+    }
+
+    .faq-heading {
+        font-size: 1.5rem;
+    }
+
+    .faq-question {
+        padding: 16px 20px;
+    }
+
+    .faq-question span {
+        font-size: 0.9rem;
+    }
+
+    .faq-item.open .faq-answer {
+        padding: 0 20px 16px;
+    }
+}
+
+/* ============================================
+   Back to Top Button
+   ============================================ */
+.back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+    border: none;
+    color: #fff;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-3px);
+}
+
+@media (max-width: 767px) {
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+    }
+}
