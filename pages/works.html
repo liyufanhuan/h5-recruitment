@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>毕业作品 - 数字工厂</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="page.css">
+    <style>
+        /* 作品标签 */
+        .works-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 10px 24px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .tab-btn.active {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.25);
+            color: #fff;
+        }
+
+        /* 作品内容区 */
+        .works-content {
+            display: none;
+        }
+
+        .works-content.active {
+            display: block;
+        }
+
+        /* 大画幅视频展示容器 */
+        .video-showcase {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .video-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .video-slide {
+            display: none;
+            width: 100%;
+        }
+
+        .video-slide.active {
+            display: block;
+        }
+
+        .video-slide video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            display: block;
+            border-radius: 16px;
+        }
+
+        .video-slide-info {
+            padding: 24px 0;
+            text-align: center;
+        }
+
+        .video-slide-title {
+            font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            font-style: normal;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .video-slide-desc {
+            font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* 滑动按钮 */
+        .slider-btn {
+            position: absolute;
+            top: 40%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .slider-btn.prev {
+            left: -60px;
+        }
+
+        .slider-btn.next {
+            right: -60px;
+        }
+
+        /* 指示器 */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: #fff;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* 优秀毕业生网格样式 */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .work-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .work-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .work-video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .work-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .work-info {
+            padding: 20px 24px;
+        }
+
+        .work-title {
+            font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            font-style: normal;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .work-desc {
+            font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .video-showcase {
+                max-width: 100%;
+            }
+
+            .slider-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .slider-btn.prev {
+                left: 10px;
+            }
+
+            .slider-btn.next {
+                right: 10px;
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .works-tabs {
+                gap: 8px;
+            }
+
+            .tab-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="page-nav">
+        <a href="../index.html" class="page-logo">济南信息工程学校×山东智捷数字科技有限公司</a>
+        <a href="../index.html" class="back-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+            返回首页
+        </a>
+    </nav>
+
+    <main class="page-body">
+        <div class="page-header">
+            <span class="page-label">Digital Factory · 2026</span>
+            <h1 class="page-title">毕业作品</h1>
+            <p class="page-desc">展示历届学员的优秀毕业作品，见证每一位创作者的成长与蜕变。</p>
+        </div>
+
+        <!-- 作品分类标签 -->
+        <div class="works-tabs">
+            <button class="tab-btn active" data-tab="3d">三维动画</button>
+            <button class="tab-btn" data-tab="video">影视后期</button>
+            <button class="tab-btn" data-tab="alumni">优秀毕业生</button>
+        </div>
+
+        <!-- 三维动画作品区 - 大画幅滑动展示 -->
+        <div class="works-content active" id="tab-3d">
+            <div class="video-showcase">
+                <button class="slider-btn prev" onclick="changeSlide('3d', -1)">‹</button>
+                <div class="video-slider" id="slider-3d">
+                    <div class="video-slide active">
+                        <video controls playsinline>
+                            <source src="../videos/微信视频2026-08-13_150420_963.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-slide-info">
+                            <h3 class="video-slide-title">UE5CG动画</h3>
+                            <p class="video-slide-desc">学员优秀三维动画创作</p>
+                        </div>
+                    </div>
+                    <div class="video-slide">
+                        <video controls playsinline>
+                            <source src="../videos/微信视频2026-08-13_150443_850.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-slide-info">
+                            <h3 class="video-slide-title">C4D实景客家土楼</h3>
+                            <p class="video-slide-desc">学员优秀三维动画创作</p>
+                        </div>
+                    </div>
+                    <div class="video-slide">
+                        <video controls playsinline>
+                            <source src="../videos/微信视频2026-08-13_150451_156.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-slide-info">
+                            <h3 class="video-slide-title">3D实景案例</h3>
+                            <p class="video-slide-desc">学员优秀三维动画创作</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-btn next" onclick="changeSlide('3d', 1)">›</button>
+                <div class="slider-dots" id="dots-3d">
+                    <div class="slider-dot active" onclick="goToSlide('3d', 0)"></div>
+                    <div class="slider-dot" onclick="goToSlide('3d', 1)"></div>
+                    <div class="slider-dot" onclick="goToSlide('3d', 2)"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 影视后期作品区 - 大画幅滑动展示 -->
+        <div class="works-content" id="tab-video">
+            <div class="video-showcase">
+                <button class="slider-btn prev" onclick="changeSlide('video', -1)">‹</button>
+                <div class="video-slider" id="slider-video">
+                    <div class="video-slide active">
+                        <video controls playsinline>
+                            <source src="../videos/党史馆红色短视频_2.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-slide-info">
+                            <h3 class="video-slide-title">党史馆红色短视频</h3>
+                            <p class="video-slide-desc">学员优秀影视后期创作</p>
+                        </div>
+                    </div>
+                    <div class="video-slide">
+                        <video controls playsinline>
+                            <source src="../videos/济南考古研究院-元孔雀蓝釉梅瓶 .mp4" type="video/mp4">
+                        </video>
+                        <div class="video-slide-info">
+                            <h3 class="video-slide-title">济南考古研究院-元孔雀蓝釉梅瓶</h3>
+                            <p class="video-slide-desc">学员优秀影视后期创作</p>
+                        </div>
+                    </div>
+                    <div class="video-slide">
+                        <video controls playsinline>
+                            <source src="../videos/郁浓香.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-slide-info">
+                            <h3 class="video-slide-title">大道和谐宣传片</h3>
+                            <p class="video-slide-desc">学员优秀影视后期创作</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-btn next" onclick="changeSlide('video', 1)">›</button>
+                <div class="slider-dots" id="dots-video">
+                    <div class="slider-dot active" onclick="goToSlide('video', 0)"></div>
+                    <div class="slider-dot" onclick="goToSlide('video', 1)"></div>
+                    <div class="slider-dot" onclick="goToSlide('video', 2)"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 优秀毕业生采访区 -->
+        <div class="works-content" id="tab-alumni">
+            <div class="works-grid">
+                <div class="work-card">
+                    <div class="work-video-wrapper">
+                        <video controls playsinline class="work-video">
+                            <source src="../videos/采访.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="work-info">
+                        <h3 class="work-title">优秀毕业生采访</h3>
+                        <p class="work-desc">听听他们的心声与成长故事</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 标签切换逻辑
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const worksContents = document.querySelectorAll('.works-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                worksContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `tab-${targetTab}`) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // 滑动展示逻辑
+        const currentSlides = {
+            '3d': 0,
+            'video': 0
+        };
+
+        function changeSlide(category, direction) {
+            const slider = document.getElementById(`slider-${category}`);
+            const slides = slider.querySelectorAll('.video-slide');
+            const dots = document.getElementById(`dots-${category}`).querySelectorAll('.slider-dot');
+            
+            // 隐藏当前幻灯片
+            slides[currentSlides[category]].classList.remove('active');
+            dots[currentSlides[category]].classList.remove('active');
+            
+            // 计算新的索引
+            currentSlides[category] += direction;
+            if (currentSlides[category] >= slides.length) {
+                currentSlides[category] = 0;
+            } else if (currentSlides[category] < 0) {
+                currentSlides[category] = slides.length - 1;
+            }
+            
+            // 显示新的幻灯片
+            slides[currentSlides[category]].classList.add('active');
+            dots[currentSlides[category]].classList.add('active');
+        }
+
+        function goToSlide(category, index) {
+            const slider = document.getElementById(`slider-${category}`);
+            const slides = slider.querySelectorAll('.video-slide');
+            const dots = document.getElementById(`dots-${category}`).querySelectorAll('.slider-dot');
+            
+            // 隐藏当前幻灯片
+            slides[currentSlides[category]].classList.remove('active');
+            dots[currentSlides[category]].classList.remove('active');
+            
+            // 显示新的幻灯片
+            currentSlides[category] = index;
+            slides[currentSlides[category]].classList.add('active');
+            dots[currentSlides[category]].classList.add('active');
+        }
+    </script>
+</body>
+</html>
