@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>师资力量 - 数字工厂</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="page.css">
+    <style>
+        .teacher-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 40px;
+        }
+        .teacher-card {
+            position: relative;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+        .teacher-card:hover { transform: translateY(-4px); }
+        .teacher-card::before {
+            content: '';
+            position: absolute;
+            top: var(--sy, 50%); left: var(--sx, 50%);
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(132,0,255,0.15) 0%, transparent 70%);
+            transform: translate(-50%,-50%);
+            opacity: 0; transition: opacity 0.3s ease;
+            pointer-events: none; z-index: 0;
+        }
+        .teacher-card:hover::before { opacity: 1; }
+        .teacher-card::after {
+            content: '';
+            position: absolute; inset: -1px; border-radius: 12px; padding: 1px;
+            background: linear-gradient(135deg, rgba(132,0,255,0) 0%, rgba(132,0,255,0.3) 50%, rgba(132,0,255,0) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            opacity: 0; transition: opacity 0.3s ease;
+            pointer-events: none; z-index: 1;
+        }
+        .teacher-card:hover::after { opacity: 1; }
+        .teacher-card > * { position: relative; z-index: 2; }
+
+        .teacher-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .teacher-info {
+            padding: 12px;
+        }
+        .teacher-name {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .teacher-title {
+            font-family: system-ui, sans-serif;
+            font-size: 0.7rem;
+            color: rgba(132, 0, 255, 0.9);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .teacher-desc {
+            font-family: system-ui, sans-serif;
+            font-size: 0.7rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.6);
+        }
+        .click-particle {
+            position: absolute; width: 4px; height: 4px;
+            background: rgba(132,0,255,0.8); border-radius: 50%;
+            pointer-events: none; z-index: 10;
+        }
+        @media (max-width: 768px) {
+            .teacher-grid { grid-template-columns: 1fr; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="page-nav">
+        <a href="../index.html" class="page-logo">济南信息工程学校×山东智捷数字科技有限公司</a>
+        <a href="../index.html" class="back-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+            返回首页
+        </a>
+    </nav>
+
+    <main class="page-body">
+        <div class="page-header">
+            <span class="page-label">DIGITAL FACTORY · 2026</span>
+            <h1 class="page-title">师资力量</h1>
+            <p class="page-desc">汇聚行业顶尖导师，以实战经验引领你走进数字创意的世界。</p>
+        </div>
+
+        <div class="teacher-grid" id="teacherGrid">
+            <div class="teacher-card">
+                <img class="teacher-image" src="../images/teacher_1.png" alt="孙剑">
+                <div class="teacher-info">
+                    <div class="teacher-name">孙剑</div>
+                    <div class="teacher-title">智捷电商 教研总监<br>服务设计专家 全栈设计专家</div>
+                    <p class="teacher-desc">18年教学、产品设计、项目管理经验，主导并参与多项国家级项目，产业经验丰富，积极推广产教融合等教学模式。主要研究方向：服务设计、产品设计、UI设计、交互设计、用户体验设计等。中央美术学院、清华美院、北京印刷学院、厦门理工学院等高校特聘讲师。2006年出版《数码印花大课堂》2020年出版《UI设计实战》</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img class="teacher-image" src="../images/teacher_2.png" alt="李蕊">
+                <div class="teacher-info">
+                    <div class="teacher-name">李蕊</div>
+                    <div class="teacher-title">智赢动漫 教学总监</div>
+                    <p class="teacher-desc">12年工作经验，资深影视制作人。丰富的项目式工作经验，参与多项高职精品课的建设与验收。主要研究方向：视频剪辑、影视后期制作、动画制作、平面设计等。项目经历：CCTV7《中国三农报道》栏目后期、山东交警总队宣传片《和谐山东》山东省远程教育中心系列科教片制作等。</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img class="teacher-image" src="../images/teacher_3.png" alt="孙凯">
+                <div class="teacher-info">
+                    <div class="teacher-name">孙凯</div>
+                    <div class="teacher-title">智捷电商 营销总监</div>
+                    <p class="teacher-desc">10年教育软件产品设计、开发经验；参与国家级教学资源库建设项目，主导创作精品课程建设200余门；积极参与产教融合教学模式的推动；主要研究方向：计算机专业教学媒体方向专业建设、电子商务专业真实运营教学模型建设、教育软件平台建设等。</p>
+                </div>
+            </div>
+            <div class="teacher-card">
+                <img class="teacher-image" src="../images/teacher_4.png" alt="杨昌明">
+                <div class="teacher-info">
+                    <div class="teacher-name">杨昌明</div>
+                    <div class="teacher-title">智赢动漫 资深讲师</div>
+                    <p class="teacher-desc">项目设计经验丰富，先后参与济南融创文旅城城市企业vi设计、山东科技大学青年岛社区UI及运营视觉前期概念与场景展示厅设计、院士阁地下办公区室内设计。主要研究方向：c4d商业项目设计、空间表现设计。</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function(){
+            const cards = document.querySelectorAll('.teacher-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const r = card.getBoundingClientRect();
+                    card.style.setProperty('--sx', (e.clientX - r.left) + 'px');
+                    card.style.setProperty('--sy', (e.clientY - r.top) + 'px');
+                });
+                card.addEventListener('click', e => {
+                    const r = card.getBoundingClientRect();
+                    const x = e.clientX - r.left, y = e.clientY - r.top;
+                    for(let i = 0; i < 12; i++){
+                        const p = document.createElement('div');
+                        p.className = 'click-particle';
+                        card.appendChild(p);
+                        const a = (Math.PI*2*i)/12, v = 40+Math.random()*40;
+                        p.style.left = x+'px'; p.style.top = y+'px';
+                        p.style.transition = 'all 0.6s cubic-bezier(0.25,0.46,0.45,0.94)';
+                        requestAnimationFrame(() => {
+                            p.style.transform = `translate(${Math.cos(a)*v}px,${Math.sin(a)*v}px)`;
+                            p.style.opacity = '0';
+                        });
+                        setTimeout(() => p.remove(), 600);
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
