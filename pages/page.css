@@ -1,0 +1,373 @@
+/* ============================================
+   数字工厂 - 子页面通用样式
+   ============================================ */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+/* ========== 顶部导航 ========== */
+.page-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.page-logo {
+    font-family: 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-style: normal;
+    font-size: 0.9rem;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+}
+
+/* ========== 返回按钮 ========== */
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(-3px);
+}
+
+.back-btn svg {
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+
+.back-btn:hover svg {
+    transform: translateX(-3px);
+}
+
+/* ========== 页面主体 ========== */
+.page-body {
+    min-height: 100vh;
+    padding: 120px 40px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ========== 页面标题区 ========== */
+.page-header {
+    margin-bottom: 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 40px;
+}
+
+.page-label {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    display: block;
+    margin-bottom: 16px;
+}
+
+.page-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 3.5rem;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.page-desc {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 600px;
+}
+
+/* ========== 内容占位区 ========== */
+.content-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    border-radius: 20px;
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.02);
+    text-align: center;
+    padding: 60px 40px;
+}
+
+.placeholder-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.4;
+}
+
+.placeholder-text {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.3);
+    line-height: 1.7;
+}
+
+.placeholder-text strong {
+    display: block;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 8px;
+}
+
+/* ========== 报名须知内容区 ========== */
+.enroll-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.info-section {
+    margin-bottom: 60px;
+    padding: 40px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.section-title {
+    font-family: 'Instrument Serif', serif;
+    font-style: normal;
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-text {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.section-text.highlight {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+/* ========== 时间线样式 ========== */
+.timeline {
+    margin-top: 24px;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding-left: 20px;
+    border-left: 3px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 6px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-date {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+    min-width: 180px;
+    padding-top: 2px;
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+.timeline-content strong {
+    display: block;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.timeline-content p {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.note {
+    margin-top: 24px;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+    border-left: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ========== 联系方式样式 ========== */
+.contact-section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.contact-info {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.contact-label {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    min-width: 80px;
+}
+
+.contact-phones {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.phone-link {
+    font-family: 'DingTalk JinBuTi', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.phone-link:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 768px) {
+    .page-nav {
+        padding: 16px 20px;
+    }
+
+    .page-logo {
+        font-size: 1.1rem;
+    }
+
+    .back-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+
+    .page-body {
+        padding: 100px 20px 60px;
+    }
+
+    .page-title {
+        font-size: 2.2rem;
+    }
+
+    .info-section {
+        padding: 28px 20px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .section-text.highlight {
+        font-size: 1.6rem;
+    }
+
+    .timeline-item {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .timeline-date {
+        min-width: auto;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .contact-phones {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .phone-link {
+        width: 100%;
+        text-align: center;
+    }
+}
